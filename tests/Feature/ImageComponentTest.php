@@ -2,6 +2,11 @@
 
 use Czernika\OrchidImages\Enums\ImageObjectFit;
 use Czernika\OrchidImages\Screen\Components\Image;
+use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
+use Orchid\Screen\LayoutFactory;
+use Orchid\Screen\Repository;
+use Tests\Models\Post;
 
 describe('image component', function () {
     it('renders passed src attribute', function () {
@@ -9,6 +14,28 @@ describe('image component', function () {
                         ->src($url = fake()->imageUrl()));
 
         expect($rendered)->toContain("src=\"$url\"");
+    });
+
+    it('can resolve src from database column when targeting url value', function () {
+        $thumb = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create([
+            'thumb_url' => $thumb->url(),
+        ]);
+
+        $rendered = $this->renderComponent(Image::make('post.thumb_url'), compact('post'));
+
+        expect($rendered)->toContain(sprintf('src="%s"', $thumb->url()));
+    });
+
+    it('can resolve src from database column when targeting id value', function () {
+        $thumb = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create([
+            'thumb_id' => $thumb->id,
+        ]);
+
+        $rendered = $this->renderComponent(Image::make('post.thumb_id'), compact('post'));
+
+        expect($rendered)->toContain(sprintf('src="%s"', $thumb->url()));
     });
 
     it('renders passed alt attribute', function () {

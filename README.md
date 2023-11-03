@@ -26,6 +26,18 @@ Image::make('image')
     ->height(400), // px
 ```
 
+`src()` is not required - it resolved based on name value (passed into `make()` method). But it can be overwritten
+
+```php
+Image::make('post.thumb_id'),
+```
+
+It will find `$post->thumb_id` value and if Attachment with this id exists it will retrieve its url and pass into src attribute. If you store image url in database as it is, just pass column value, e.g.
+
+```php
+Image::make('post.thumb_url'),
+```
+
 `height()` accepts numeric value in pixels or any valid CSS value. Default is `30rem`
 
 ```php

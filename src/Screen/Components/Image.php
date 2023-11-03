@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Czernika\OrchidImages\Screen\Components;
 
 use Czernika\OrchidImages\Enums\ImageObjectFit;
+use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
 
 /**
@@ -20,12 +22,34 @@ class Image extends Field
     protected $attributes = [
         'fit' => 'object-fit-cover', // 'cover', 'contain', 'fill', 'scale', 'none'
         'height' => '30rem',
+        'src' => null,
     ];
 
     protected $inlineAttributes = [
-        'src',
         'alt',
     ];
+
+    public function __construct()
+    {
+        $this->addBeforeRender(function () {
+            if (is_null($this->get('src'))) {
+                $value = $this->get('value');
+
+                if (is_numeric($value)) {
+                    $value = Dashboard::model(Attachment::class)::find($value)?->url();
+                }
+
+                $this->set('src', $value);
+            }
+        });
+    }
+
+    public function src(string $src)
+    {
+        $this->set('src', $src);
+
+        return $this;
+    }
 
     public function objectFit(string|ImageObjectFit $fit)
     {

@@ -44,8 +44,8 @@
         "psr-4": {
             "Tests\\": "tests/",
             "App\\": "skeleton/app/",
-            "Database\\Factories\\": "skeleton/database/factories/",
-            "Database\\Seeders\\": "skeleton/database/seeders/"
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "config": {
