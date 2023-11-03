@@ -1,0 +1,19 @@
+.oi-image {
+    max-width: 40rem;
+
+    & > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/**
+ * Same name conventions as for Bootstrap
+ */
+
+@each $fit, $value in (cover, contain, fill, scale, none), (cover, contain, fill, scale-down, none) {
+    .object-fit-$(fit) {
+        object-fit: $value;
+    }
+}

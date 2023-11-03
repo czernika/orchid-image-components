@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Orchid\Platform\Providers\FoundationServiceProvider as OrchidServiceProvider;
+use Orchid\Screen\Field;
 use Plannr\Laravel\FastRefreshDatabase\Traits\FastRefreshDatabase;
 
 abstract class TestCase extends BaseTestCase
@@ -43,5 +44,10 @@ abstract class TestCase extends BaseTestCase
     {
         $this->loadLaravelMigrations();
         $this->artisan('orchid:install');
+    }
+
+    public function renderComponent(Field $component): string
+    {
+        return $component->render()->render();
     }
 }
