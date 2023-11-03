@@ -1,0 +1,64 @@
+{
+    "name": "czernika/orchid-images",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aliakseyenka Ihar",
+            "email": "aliha.devs@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "orchid/platform": "^14.15"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.39",
+        "pestphp/pest": "^2.24",
+        "orchestra/testbench": "^8.14",
+        "plannr/laravel-fast-refresh-database": "^1.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "./vendor/bin/pest",
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "Czernika\\OrchidImages\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "App\\": "skeleton/app/",
+            "Database\\Factories\\": "skeleton/database/factories/",
+            "Database\\Seeders\\": "skeleton/database/seeders/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Czernika\\OrchidImages\\OrchidImagesServiceProvider"
+            ]
+        }
+    }
+}
