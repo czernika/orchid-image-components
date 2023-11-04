@@ -17,3 +17,8 @@
         object-fit: $value;
     }
 }
+
+.oi-gallery {
+    display: grid;
+    gap: 1rem;
+}
