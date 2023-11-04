@@ -4,8 +4,7 @@ use Czernika\OrchidImages\Enums\ImageObjectFit;
 use Czernika\OrchidImages\Screen\Components\Image;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
-use Orchid\Screen\LayoutFactory;
-use Orchid\Screen\Repository;
+use Tests\Models\AttachmentWithPlaceholder;
 use Tests\Models\Post;
 
 describe('image component', function () {
@@ -45,6 +44,46 @@ describe('image component', function () {
         expect($rendered)->toContain("alt=\"$alt\"");
     });
 
+    it('can show placeholder if file does not exists', function () {
+        Dashboard::useModel(Attachment::class, AttachmentWithPlaceholder::class);
+
+        $thumb = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create([
+            'thumb_id' => $thumb->id,
+        ]);
+
+        Dashboard::useModel(Attachment::class, Attachment::class);
+
+        $rendered = $this->renderComponent(Image::make('post.thumb_id')
+            ->placeholder('/img/placeholder.webp'), compact('post'));
+
+        expect($rendered)->toContain('src="/img/placeholder.webp"');
+    });
+
+    it('can show placeholder if relation does not exists', function () {
+        $post = Post::create([
+            'thumb_id' => null,
+        ]);
+
+        $rendered = $this->renderComponent(Image::make('post.thumb_id')
+            ->placeholder('/img/placeholder.webp'), compact('post'));
+
+        expect($rendered)->toContain('src="/img/placeholder.webp"');
+    })->group('now');
+
+    it('can resolve alt from attachment database column when targeting id value', function () {
+        $thumb = Dashboard::model(Attachment::class)::factory()->create([
+            'alt' => 'Alt text',
+        ]);
+        $post = Post::create([
+            'thumb_id' => $thumb->id,
+        ]);
+
+        $rendered = $this->renderComponent(Image::make('post.thumb_id'), compact('post'));
+
+        expect($rendered)->toContain(sprintf('alt="%s"', $thumb->alt));
+    });
+
     it('renders correct object fit class', function (string $fit) {
         $rendered = $this->renderComponent(Image::make('image')
                         ->objectFit($fit));
@@ -75,15 +114,31 @@ describe('image component', function () {
         $rendered = $this->renderComponent(Image::make('image')
                         ->height($height));
 
-        expect($rendered)->toContain("style=\"height: 600px;\"");
+        expect($rendered)->toContain("style=\"height: 600px; width: 100%;\"");
     })->with([
         'numeric value' => 600,
         'string value' => '600px',
     ]);
 
-    it('expects default value for height to be 30rem', function () {
+    it('expects default value for height to be auto', function () {
         $rendered = $this->renderComponent(Image::make('image'));
 
-        expect($rendered)->toContain("style=\"height: 30rem;\"");
+        expect($rendered)->toContain("style=\"height: auto; width: 100%;\"");
+    });
+
+    it('renders correct width value', function ($width) {
+        $rendered = $this->renderComponent(Image::make('image')
+                        ->width($width));
+
+        expect($rendered)->toContain("style=\"height: auto; width: 600px;\"");
+    })->with([
+        'numeric value' => 600,
+        'string value' => '600px',
+    ]);
+
+    it('expects default value for width to be 100%', function () {
+        $rendered = $this->renderComponent(Image::make('image'));
+
+        expect($rendered)->toContain("style=\"height: auto; width: 100%;\"");
     });
 });

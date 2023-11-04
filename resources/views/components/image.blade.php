@@ -1,12 +1,12 @@
 @component($typeForm, get_defined_vars())
-    <div class="oi-image" style="height: {{ $height }};">
+    <div class="oi-image" style="height: {{ $height }}; width: {{ $width }};">
         <img
-            src="{{ $src }}"
             @class([
                 'border rounded',
                 $fit,
             ])
-            {{ $attributes }}
+            src="{{ $src }}"
+            alt="{{ $alt }}"
         />
     </div>
 @endcomponent

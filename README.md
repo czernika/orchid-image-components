@@ -43,6 +43,15 @@ Image::make('image')
     ->src('/images/my-cool-image.jpg'),
 ```
 
+Some relations are optional meaning user can upload avatar or not. If you wish to show placeholder for an image that has not been uploaded use `placeholder()` method
+
+```php
+Image::make('user.avatar_id')
+    ->placeholder('/img/placeholder.webp'),
+```
+
+Placeholder will be shown when file does not exists physically if passed (unless you overwrite `url()` method for Attachment)
+
 You may change alt attribute by using `alt()` method
 
 ```php
@@ -50,7 +59,9 @@ Image::make('image')
     ->alt('Alt text'),
 ```
 
-By default image has `30rem` height. If you need to change it pass either integer value in pixels or any valid CSS value as a string, for example
+If relation was set as image source alt value could be resolved from Attachment model
+
+By default image has `auto` height. If you need to change it pass either integer value in pixels or any valid CSS value as a string, for example
 
 ```php
 Image::make('image')
@@ -59,6 +70,17 @@ Image::make('image')
 // or
 Image::make('image')
     ->height('5vh'), // 5vh
+```
+
+Same applied for width but default value is `100%`
+
+```php
+Image::make('image')
+    ->width(400), // 400px
+
+// or
+Image::make('image')
+    ->width('15vw'), // 15vw
 ```
 
 This component also accepts CSS object fit property but in Bootstrap way - there are 5 available values according to [Bootstrap](https://getbootstrap.com/docs/5.3/utilities/object-fit/#how-it-works) - `cover`, `contain`, `fill`, `scale` and `none`

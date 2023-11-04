@@ -21,32 +21,58 @@ class Image extends Field
 
     protected $attributes = [
         'fit' => 'object-fit-cover', // 'cover', 'contain', 'fill', 'scale', 'none'
-        'height' => '30rem',
+        'height' => 'auto',
+        'width' => '100%',
         'src' => null,
-    ];
-
-    protected $inlineAttributes = [
-        'alt',
+        'alt' => '',
+        'placeholder' => null,
     ];
 
     public function __construct()
     {
         $this->addBeforeRender(function () {
+            $value = $this->get('value');
+
+            if (is_numeric($value)) {
+                $value = Dashboard::model(Attachment::class)::find($value);
+            }
+
             if (is_null($this->get('src'))) {
-                $value = $this->get('value');
+                $placeholder = $this->get('placeholder');
 
-                if (is_numeric($value)) {
-                    $value = Dashboard::model(Attachment::class)::find($value)?->url();
-                }
+                $this->set('src', $this->valueIsAttachment($value) ?
+                    $value->url($placeholder) :
+                    (is_null($value) ? $placeholder : $value));
+            }
 
-                $this->set('src', $value);
+            if ('' === $this->get('alt')) {
+                $this->set('alt', $this->valueIsAttachment($value) ? $value->alt : '');
             }
         });
+    }
+
+    protected function valueIsAttachment($value)
+    {
+        return is_a($value, Dashboard::model(Attachment::class));
     }
 
     public function src(string $src)
     {
         $this->set('src', $src);
+
+        return $this;
+    }
+
+    public function placeholder(string $placeholder)
+    {
+        $this->set('placeholder', $placeholder);
+
+        return $this;
+    }
+
+    public function alt(string $alt)
+    {
+        $this->set('alt', $alt);
 
         return $this;
     }
@@ -65,6 +91,13 @@ class Image extends Field
     public function height(string|int $height)
     {
         $this->set('height', is_int($height) ? "{$height}px" : $height);
+
+        return $this;
+    }
+
+    public function width(string|int $width)
+    {
+        $this->set('width', is_int($width) ? "{$width}px" : $width);
 
         return $this;
     }
