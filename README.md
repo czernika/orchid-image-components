@@ -104,6 +104,18 @@ Image::make('image')
     ->objectFit(ImageObjectFit::CONTAIN)
 ```
 
+### Avatar
+
+Same as Image but rounded square with in dimension (size) instead of width and height
+
+```php
+use Czernika\OrchidImages\Screen\Components\Avatar;
+
+Avatar::make('user.avatar_id')
+    ->placeholder('/img/default-user.webp')
+    ->size(150), // 150x150px
+```
+
 ### Gallery
 
 Gallery is basically set of non-interactive images. You need to pass a collection of attachments as source for it

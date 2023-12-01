@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Czernika\OrchidImages\Screen\Components;
 
 use Czernika\OrchidImages\Enums\ImageObjectFit;
-use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
-use Orchid\Screen\Field;
 
 /**
  * Class Field.
@@ -15,7 +12,7 @@ use Orchid\Screen\Field;
  * @method self src(string $src)
  * @method self alt(string $alt)
  */
-class Image extends Field
+class Image extends Avatar
 {
     protected $view = 'orchid-images::components.image';
 
@@ -27,55 +24,6 @@ class Image extends Field
         'alt' => '',
         'placeholder' => null,
     ];
-
-    public function __construct()
-    {
-        $this->addBeforeRender(function () {
-            $value = $this->get('value');
-
-            if (is_numeric($value)) {
-                $value = Dashboard::model(Attachment::class)::find($value);
-            }
-
-            if (is_null($this->get('src'))) {
-                $placeholder = $this->get('placeholder');
-
-                $this->set('src', $this->valueIsAttachment($value) ?
-                    $value->url($placeholder) :
-                    (is_null($value) ? $placeholder : $value));
-            }
-
-            if ('' === $this->get('alt')) {
-                $this->set('alt', $this->valueIsAttachment($value) ? $value->alt : '');
-            }
-        });
-    }
-
-    protected function valueIsAttachment($value)
-    {
-        return is_a($value, Dashboard::model(Attachment::class));
-    }
-
-    public function src(string $src)
-    {
-        $this->set('src', $src);
-
-        return $this;
-    }
-
-    public function placeholder(string $placeholder)
-    {
-        $this->set('placeholder', $placeholder);
-
-        return $this;
-    }
-
-    public function alt(string $alt)
-    {
-        $this->set('alt', $alt);
-
-        return $this;
-    }
 
     public function objectFit(string|ImageObjectFit $fit)
     {
