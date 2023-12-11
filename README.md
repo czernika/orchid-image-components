@@ -1,12 +1,16 @@
 # Orchid Image Components
 
-> Under development
-
 Adds new image components to preview uploaded (or not) images for Laravel [Orchid](https://orchid.software/) admin panel. Mostly used for "show" type screens where presentation may be important
 
-## Installation
+## Support
 
-**TODO**: register package
+Version 1.x requires PHP at least 8.1, Orchid version 14 or higher and Laravel version 10+
+
+| Version | PHP  | Laravel | Orchid |
+|---------|------|---------|--------|
+| 1.x     | 8.1+ | 10.x    | 14.x   |
+
+## Installation
 
 ```sh
 composer require czernika/orchid-image-components
@@ -144,11 +148,11 @@ Gallery is basically set of non-interactive images. You need to pass a collectio
 // Screen
 public function query(Post $post)
 {
-    return ['gallery' => $post->attachment];
+    return ['gallery' => $post->attachments];
 }
 
 // Layout
-use Czernika\OrchidImages\Screen\Components\Image;
+use Czernika\OrchidImages\Screen\Components\Gallery;
 
 Gallery::make('gallery'),
 ```
@@ -169,6 +173,21 @@ Gallery::make('gallery')
     ->autoFit(200), // 1 column will be 200px wide
 ```
 
+#### Object fit
+
+Same CSS property for every individual image - `cover`, `contain`, `fill`, `scale` and `none`
+
+```php
+use Czernika\OrchidImages\Enums\ImageObjectFit;
+
+Gallery::make('gallery')
+    ->objectFit('contain')
+
+// or same result using ImageObjectFit enum helper
+Gallery::make('gallery')
+    ->objectFit(ImageObjectFit::CONTAIN)
+```
+
 #### Empty value
 
 If there is no gallery you can define empty value - just pass a string
@@ -184,6 +203,22 @@ Gallery::make('gallery')
 
 Same properties as for Gallery but it can be zoomed (this is interactive element)
 
+```php
+// Screen
+public function query(Post $post)
+{
+    return ['post' => $post, 'gallery' => $post->attachments];
+}
+
+// Layout
+use Czernika\OrchidImages\Screen\Components\Lightbox;
+
+Lightbox::make('gallery'),
+
+// This way thumb became interactive (while Image is not) - you can zoom it
+Lightbox::make('post.thumb_id'),
+```
+
 **TODO**: add slider options from [used package](https://github.com/biati-digital/glightbox#slide-options) such as
 
 - Slide width / height
@@ -193,10 +228,6 @@ Same properties as for Gallery but it can be zoomed (this is interactive element
 - Show close button or not
 
 ### Carousel
-
-...
-
-## Contributing
 
 ...
 

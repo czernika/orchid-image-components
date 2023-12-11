@@ -10,11 +10,10 @@ use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
 
 /**
- * Class Field.
- *
  * @method self src(string $src)
  * @method self alt(string $alt)
  * @method self size(string|int $size)
+ * @method self placeholder(string $placeholder)
  */
 class Avatar extends Field
 {
@@ -50,28 +49,28 @@ class Avatar extends Field
         });
     }
 
-    public function src(string $src)
+    public function src(string $src): static
     {
         $this->set('src', $src);
 
         return $this;
     }
 
-    public function size($size)
+    public function size($size): static
     {
         $this->set('size', is_int($size) ? "{$size}px" : $size);
 
         return $this;
     }
 
-    public function placeholder(string $placeholder)
+    public function placeholder(string $placeholder): static
     {
         $this->set('placeholder', $placeholder);
 
         return $this;
     }
 
-    public function alt(string $alt)
+    public function alt(string $alt): static
     {
         $this->set('alt', $alt);
 

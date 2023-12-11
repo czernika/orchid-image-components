@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
-use Czernika\OrchidImages\Enums\ImageObjectFit;
+use Czernika\OrchidImages\Support\Traits\ObjectFitable;
 
 /**
- * Class Field.
- *
  * @method self src(string $src)
  * @method self alt(string $alt)
+ * @method self height(string|int $height)
+ * @method self width(string|int $width)
+ * @method self placeholder(string $placeholder)
+ * @method self objectFit(string|\Czernika\OrchidImages\Enums\ImageObjectFit $fit)
  */
 class Image extends Avatar
 {
+    use ObjectFitable;
+
     protected $view = 'orchid-images::components.image';
 
     protected $attributes = [
@@ -25,25 +29,14 @@ class Image extends Avatar
         'placeholder' => null,
     ];
 
-    public function objectFit(string|ImageObjectFit $fit)
-    {
-        if (is_a($fit, ImageObjectFit::class)) {
-            $fit = $fit->value;
-        }
-
-        $this->set('fit', sprintf('object-fit-%s', $fit));
-
-        return $this;
-    }
-
-    public function height(string|int $height)
+    public function height(string|int $height): static
     {
         $this->set('height', is_int($height) ? "{$height}px" : $height);
 
         return $this;
     }
 
-    public function width(string|int $width)
+    public function width(string|int $width): static
     {
         $this->set('width', is_int($width) ? "{$width}px" : $width);
 

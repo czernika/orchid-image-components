@@ -4,14 +4,22 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
-use Czernika\OrchidImages\Enums\ImageObjectFit;
 use Czernika\OrchidImages\Support\Helper;
+use Czernika\OrchidImages\Support\Traits\ObjectFitable;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
 
+/**
+ * @method self columns(int $columns)
+ * @method self autoFit(string|int $fit)
+ * @method self objectFit(string|\Czernika\OrchidImages\Enums\ImageObjectFit $fit)
+ * @method self empty(string $empty)
+ */
 class Gallery extends Field
 {
+    use ObjectFitable;
+
     protected $view = 'orchid-images::components.gallery';
 
     protected $attributes = [
@@ -35,32 +43,21 @@ class Gallery extends Field
         });
     }
 
-    public function autoFit(string|int $fit)
+    public function autoFit(string|int $fit): static
     {
         $this->set('autoFit', is_int($fit) ? sprintf('%spx', $fit) : $fit);
 
         return $this;
     }
 
-    public function objectFit(string|ImageObjectFit $fit)
-    {
-        if (is_a($fit, ImageObjectFit::class)) {
-            $fit = $fit->value;
-        }
-
-        $this->set('fit', sprintf('object-fit-%s', $fit));
-
-        return $this;
-    }
-
-    public function columns(int $columns)
+    public function columns(int $columns): static
     {
         $this->set('columns', $columns);
 
         return $this;
     }
 
-    public function empty($empty)
+    public function empty($empty): static
     {
         $this->set('empty', $empty);
 
