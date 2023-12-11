@@ -2,7 +2,7 @@
 <div data-controller="lightbox">
 
     <ul class="list-unstyled oi-gallery oi-lightbox" style="grid-template-columns: repeat({{ $columns }}, 1fr)">
-        @foreach ($elements as $item)
+        @forelse ($elements as $item)
             <li class="">
                 <a
                     href="{{ $item->url() }}"
@@ -14,10 +14,20 @@
                     data-draggable="true"
                     data-height="100%"
                 >
-                    <img class="border d-block rounded" src="{{ $item->url() }}" alt="{{ $item->alt }}" title="{{ $item->title }}" />
+                    <img
+                        @class([
+                            'border d-block rounded w-100 h-100',
+                            $fit,
+                        ])
+                        src="{{ $item->url() }}"
+                        alt="{{ $item->alt }}"
+                        title="{{ $item->title }}"
+                    />
                 </a>
             </li>
-        @endforeach
+        @empty
+            <li>{{ $empty }}</li>
+        @endforelse
     </ul>
 
 </div>

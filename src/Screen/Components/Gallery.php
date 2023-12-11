@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
+use Czernika\OrchidImages\Enums\ImageObjectFit;
 use Czernika\OrchidImages\Support\Helper;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
@@ -18,6 +19,7 @@ class Gallery extends Field
         'empty' => '',
         'columns' => 6,
         'autoFit' => false,
+        'fit' => 'object-fit-cover', // 'cover', 'contain', 'fill', 'scale', 'none'
     ];
 
     public function __construct()
@@ -36,6 +38,17 @@ class Gallery extends Field
     public function autoFit(string|int $fit)
     {
         $this->set('autoFit', is_int($fit) ? sprintf('%spx', $fit) : $fit);
+
+        return $this;
+    }
+
+    public function objectFit(string|ImageObjectFit $fit)
+    {
+        if (is_a($fit, ImageObjectFit::class)) {
+            $fit = $fit->value;
+        }
+
+        $this->set('fit', sprintf('object-fit-%s', $fit));
 
         return $this;
     }
