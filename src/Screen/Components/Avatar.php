@@ -49,6 +49,12 @@ class Avatar extends Field
         });
     }
 
+    /**
+     * Image src attribute
+     *
+     * @param string $src
+     * @return static
+     */
     public function src(string $src): static
     {
         $this->set('src', $src);
@@ -56,13 +62,25 @@ class Avatar extends Field
         return $this;
     }
 
-    public function size($size): static
+    /**
+     * Both width and height
+     *
+     * @param string|int $size
+     * @return static
+     */
+    public function size(string|int $size): static
     {
         $this->set('size', is_int($size) ? "{$size}px" : $size);
 
         return $this;
     }
 
+    /**
+     * Placeholder URL if there are no image passed
+     *
+     * @param string $placeholder
+     * @return static
+     */
     public function placeholder(string $placeholder): static
     {
         $this->set('placeholder', $placeholder);
@@ -70,6 +88,12 @@ class Avatar extends Field
         return $this;
     }
 
+    /**
+     * Image alt attribute
+     *
+     * @param string $alt
+     * @return static
+     */
     public function alt(string $alt): static
     {
         $this->set('alt', $alt);

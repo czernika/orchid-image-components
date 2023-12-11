@@ -29,6 +29,12 @@ class Image extends Avatar
         'placeholder' => null,
     ];
 
+    /**
+     * Image height
+     *
+     * @param string|integer $height
+     * @return static
+     */
     public function height(string|int $height): static
     {
         $this->set('height', is_int($height) ? "{$height}px" : $height);
@@ -36,6 +42,12 @@ class Image extends Avatar
         return $this;
     }
 
+    /**
+     * Image width
+     *
+     * @param string|integer $width
+     * @return static
+     */
     public function width(string|int $width): static
     {
         $this->set('width', is_int($width) ? "{$width}px" : $width);

@@ -43,6 +43,12 @@ class Gallery extends Field
         });
     }
 
+    /**
+     * CSS Grid template column property - should be gallery fitted or not
+     *
+     * @param string|integer $fit
+     * @return static
+     */
     public function autoFit(string|int $fit): static
     {
         $this->set('autoFit', is_int($fit) ? sprintf('%spx', $fit) : $fit);
@@ -50,6 +56,12 @@ class Gallery extends Field
         return $this;
     }
 
+    /**
+     * Number of columns
+     *
+     * @param integer $columns
+     * @return static
+     */
     public function columns(int $columns): static
     {
         $this->set('columns', $columns);
@@ -57,7 +69,13 @@ class Gallery extends Field
         return $this;
     }
 
-    public function empty($empty): static
+    /**
+     * Text to display when there are no images
+     *
+     * @param string $empty
+     * @return static
+     */
+    public function empty(string $empty): static
     {
         $this->set('empty', $empty);
 
