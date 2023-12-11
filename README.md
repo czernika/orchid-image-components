@@ -1,14 +1,40 @@
 # Orchid Image Components
 
-Adds new image components to preview uploaded (or not) images for Laravel [Orchid](https://orchid.software/) admin panel. Mostly used for "show" screens
+> Under development
+
+Adds new image components to preview uploaded (or not) images for Laravel [Orchid](https://orchid.software/) admin panel. Mostly used for "show" type screens where presentation may be important
 
 ## Installation
 
-...
+**TODO**: register package
+
+```sh
+composer require czernika/orchid-image-components
+```
 
 ### Register published assets
 
-...
+*For now assets will be published on every Composer interaction like updating or installing packages etc*
+
+Check for `public/vendor/orchid-images` directory to exists
+
+Then you should register assets within `config/platform.php`
+
+```php
+'resource' => [
+    'stylesheets' => [
+        '/vendor/orchid-images/css/image.css',
+
+        // If you're using lightbox component
+        '/vendor/orchid-images/css/lightbox.css',
+    ],
+
+    'scripts'     => [
+        // If you're using lightbox component
+        '/vendor/orchid-images/js/lightbox.js',
+    ],
+],
+```
 
 ## Components
 
@@ -16,13 +42,7 @@ Adds new image components to preview uploaded (or not) images for Laravel [Orchi
 
 Image represents simple singular, well, image component which has no any interaction with user - it just shows the image
 
-For example, you have avatar field for User model. It may be stored as string (URL) like `avatar_url` or One-to-One relation to Attachment model (`avatar_id`). Let say we store it as ID. Your Edit-Layout should look like
-
-```php
-Cropper::make('user.avatar_id'),
-```
-
-And in a Show-Layout just pass
+For example, you have avatar field for User model. It may be stored as string (URL) like `avatar_url` or One-to-One relation to Attachment model (`avatar_id`). Let say we store it as ID. In a Show-Layout just use
 
 ```php
 use Czernika\OrchidImages\Screen\Components\Image;
@@ -33,7 +53,7 @@ Image::make('user.avatar_id'),
 This basically resolved as `$user->avatar_id`, and if Attachment with this ID exists, component will resolve its url. If you're storing avatar as url - same method is valid
 
 ```php
-Image::make('user.avatar_url'),
+Image::make('user.table_column_which_stores_avatar_url'),
 ```
 
 If you need to pass custom URL use `src()` method (pass anything you want into `make()` method)
@@ -162,7 +182,15 @@ Gallery::make('gallery')
 
 ### Lightbox
 
-...
+Same properties as for Gallery but it can be zoomed (this is interactive element)
+
+**TODO**: add slider options from [used package](https://github.com/biati-digital/glightbox#slide-options) such as
+
+- Slide width / height
+- Title / description and its position
+- Loop / effects
+- Zoomable / draggable type
+- Show close button or not
 
 ### Carousel
 

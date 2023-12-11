@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
+use Czernika\OrchidImages\Support\Helper;
+use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
 
 class Gallery extends Field
@@ -21,7 +24,12 @@ class Gallery extends Field
     {
         $this->addBeforeRender(function () {
             $value = $this->get('value');
-            $this->set('elements', is_null($value) ? [] : $value);
+
+            if (is_numeric($value)) {
+                $value = Dashboard::model(Attachment::class)::find($value);
+            }
+
+            $this->set('elements', Helper::isAttachment($value) ? [$value] : collect($value));
         });
     }
 

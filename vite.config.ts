@@ -1,10 +1,17 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+    resolve: {
+        alias: {
+            '@css': 'resources/css',
+        },
+    },
+
     build: {
         rollupOptions: {
             input: [
-                'resources/css/image.css'
+                'resources/css/image.css',
+                'resources/js/lightbox.js'
             ],
             output: {
                 assetFileNames: (assetInfo) => {
@@ -13,6 +20,8 @@ export default defineConfig({
 
                     return `${extType}/[name][extname]`;
                 },
+                chunkFileNames: 'js/[name].js',
+                entryFileNames: 'js/[name].js',
             },
         }
     },

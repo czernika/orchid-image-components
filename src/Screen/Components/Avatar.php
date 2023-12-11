@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
+use Czernika\OrchidImages\Support\Helper;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
@@ -38,20 +39,15 @@ class Avatar extends Field
             if (is_null($this->get('src'))) {
                 $placeholder = $this->get('placeholder');
 
-                $this->set('src', $this->valueIsAttachment($value) ?
+                $this->set('src', Helper::isAttachment($value) ?
                     $value->url($placeholder) :
                     (is_null($value) ? $placeholder : $value));
             }
 
             if ('' === $this->get('alt')) {
-                $this->set('alt', $this->valueIsAttachment($value) ? $value->alt : '');
+                $this->set('alt', Helper::isAttachment($value) ? $value->alt : '');
             }
         });
-    }
-
-    protected function valueIsAttachment($value)
-    {
-        return is_a($value, Dashboard::model(Attachment::class));
     }
 
     public function src(string $src)

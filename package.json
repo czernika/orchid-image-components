@@ -9,7 +9,11 @@
     "devDependencies": {
         "autoprefixer": "^10.4.16",
         "postcss-each": "^1.1.0",
+        "postcss-import": "^15.1.0",
         "postcss-nested": "^6.0.1",
         "vite": "^4.5.0"
+    },
+    "dependencies": {
+        "glightbox": "^3.2.0"
     }
 }

@@ -15,6 +15,18 @@ describe('gallery image component', function () {
         expect($rendered)->toContain('No elements');
     });
 
+    it('shows image on singular instance', function () {
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create([
+            'thumb_id' => $attachment->id,
+        ]);
+
+        $rendered = $this->renderComponent(Gallery::make('post.thumb_id'),
+                        compact('post'));
+
+        expect($rendered)->toContain(sprintf('src="%s"', $attachment->url()));
+    });
+
     it('shows image if collection exists', function () {
         $attachment = Dashboard::model(Attachment::class)::factory()->create();
         $post = Post::create();
