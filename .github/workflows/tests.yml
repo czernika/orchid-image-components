@@ -11,6 +11,7 @@ on:
 jobs:
   php-tests:
     runs-on: ubuntu-22.04
+    if: ${{ github.actor != 'dependabot[bot]' }}
     strategy:
       fail-fast: true
       matrix:
@@ -60,14 +61,6 @@ jobs:
         run: |
           composer require "laravel/framework:${{ matrix.laravel-version }}" "orchestra/testbench:8.*" --no-interaction --no-update
           composer update --prefer-dist --no-interaction
-
-      - name: Copy env file and generate keys
-        run: |
-          cp .env.example .env
-          php artisan key:generate
-
-      - name: Clear Config
-        run: php artisan config:clear
 
       - name: Running tests
         run: ./vendor/bin/pest --bail
