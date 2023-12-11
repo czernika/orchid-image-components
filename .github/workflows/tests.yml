@@ -22,7 +22,7 @@ jobs:
       DB_USERNAME: root
       DB_PASSWORD: password
 
-    name: PHP {{ matrix.php-version }} | Laravel - {{ matrix.laravel-version }}
+    name: PHP ${{ matrix.php-version }} | Laravel - ${{ matrix.laravel-version }}
 
     services:
       mysql:
