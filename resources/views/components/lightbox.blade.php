@@ -1,7 +1,7 @@
 @component($typeForm, get_defined_vars())
 <div data-controller="lightbox">
 
-    <ul class="list-unstyled oi-gallery oi-lightbox" style="grid-template-columns: repeat({{ $columns }}, 1fr)">
+    <ul class="list-unstyled oi-gallery oi-lightbox" style="grid-template-columns: repeat({{ $autoFit === false ? $columns : 'auto-fit' }}, {{ $autoFit === false ? '1fr' : $autoFit }});">
         @forelse ($elements as $item)
             <li class="">
                 <a
