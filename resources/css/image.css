@@ -1,5 +1,5 @@
 .oi-image {
-    max-width: 40rem;
+    max-width: 100%;
 
     & > img {
         display: block;
