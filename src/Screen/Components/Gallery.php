@@ -26,6 +26,7 @@ class Gallery extends Field
         'elements' => [],
         'empty' => '',
         'columns' => 6,
+        'height' => 'auto',
         'autoFit' => false,
         'fit' => 'object-fit-cover', // 'cover', 'contain', 'fill', 'scale', 'none'
     ];
@@ -41,6 +42,19 @@ class Gallery extends Field
 
             $this->set('elements', Helper::isAttachment($value) ? [$value] : collect($value));
         });
+    }
+
+    /**
+     * Image height
+     *
+     * @param string|integer $height
+     * @return static
+     */
+    public function height(string|int $height): static
+    {
+        $this->set('height', is_int($height) ? "{$height}px" : $height);
+
+        return $this;
     }
 
     /**

@@ -58,4 +58,29 @@ describe('gallery image component', function () {
 
         expect($rendered)->toContain('style="grid-template-columns: repeat(auto-fit, 250px);"');
     });
+
+    it('renders correct height value', function ($height) {
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Gallery::make('gallery')->height($height),
+                        ['gallery' => $post->attachment]);
+
+        expect($rendered)->toContain("style=\"height: 600px;\"");
+    })->with([
+        'numeric value' => 600,
+        'string value' => '600px',
+    ]);
+
+    it('expects default value for height to be auto', function () {
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Gallery::make('gallery'),
+                        ['gallery' => $post->attachment]);
+
+        expect($rendered)->toContain("style=\"height: auto;\"");
+    });
 });

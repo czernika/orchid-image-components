@@ -6,7 +6,8 @@
             <li class="">
                 <a
                     href="{{ $item->url() }}"
-                    class="glightbox oi-image"
+                    class="glightbox oi-image d-block"
+                    style="height: {{ $height }};"
                     data-gallery="{{ $id }}"
                     data-type="image"
                     data-effect="zoom"
