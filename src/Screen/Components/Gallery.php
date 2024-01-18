@@ -34,14 +34,25 @@ class Gallery extends Field
     public function __construct()
     {
         $this->addBeforeRender(function () {
-            $value = $this->get('value');
-
-            if (is_numeric($value)) {
-                $value = Dashboard::model(Attachment::class)::find($value);
+            if (!empty($this->get('elements'))) {
+                return;
             }
 
-            $this->set('elements', Helper::isAttachment($value) ? [$value] : collect($value));
+            $value = $this->get('value');
+
+            $this->elements($value);
         });
+    }
+
+    public function elements($elements)
+    {
+        if (is_numeric($elements)) {
+            $elements = Dashboard::model(Attachment::class)::find($elements);
+        }
+
+        $this->set('elements', Helper::isAttachment($elements) ? [$elements] : collect($elements));
+
+        return $this;
     }
 
     /**
