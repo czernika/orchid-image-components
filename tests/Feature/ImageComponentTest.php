@@ -7,6 +7,8 @@ use Orchid\Platform\Dashboard;
 use Tests\Models\AttachmentWithPlaceholder;
 use Tests\Models\Post;
 
+uses()->group('image');
+
 describe('image component', function () {
     it('renders passed src attribute', function () {
         $rendered = $this->renderComponent(Image::make('image')

@@ -1,5 +1,7 @@
 # Orchid Image Components
 
+**TODO** rewrite ugly docs :(
+
 Adds new image components to preview uploaded (or not) images for Laravel [Orchid](https://orchid.software/) admin panel. Mostly used for "show" type screens where presentation may be important
 
 ## Support
@@ -36,6 +38,9 @@ Then you should register assets within `config/platform.php`
     'scripts'     => [
         // If you're using lightbox component
         '/vendor/orchid-images/js/lightbox.js',
+
+        // If you need carousel 
+        '/vendor/orchid-images/js/carousel.js',
     ],
 ],
 ```
@@ -229,7 +234,20 @@ Lightbox::make('post.thumb_id'),
 
 ### Carousel
 
-...
+```php
+use Czernika\OrchidImages\Screen\Components\Carousel;
+
+Carousel::make('post.attachment')
+    ->width(600)
+    ->height('auto')
+    ->objectFit('cover')
+    ->fade() // cross-fade effect
+    ->withControls() // show next-prev buttons
+    ->withIndicators() // show slide nav bullets
+    ->empty(__('No slides'))
+```
+
+**TODO**: add slider options from [Bootstrap carousel](https://getbootstrap.com/docs/5.0/components/carousel/)
 
 ## License
 

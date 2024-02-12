@@ -11,7 +11,8 @@ export default defineConfig({
         rollupOptions: {
             input: [
                 'resources/css/image.css',
-                'resources/js/lightbox.js'
+                'resources/js/lightbox.js',
+                'resources/js/carousel.js',
             ],
             output: {
                 assetFileNames: (assetInfo) => {

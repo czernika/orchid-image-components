@@ -1,11 +1,12 @@
 <?php
 
-use Czernika\OrchidImages\Enums\ImageObjectFit;
 use Czernika\OrchidImages\Screen\Components\Avatar;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 use Tests\Models\AttachmentWithPlaceholder;
 use Tests\Models\Post;
+
+uses()->group('avatar');
 
 describe('avatar component', function () {
     it('renders passed src attribute', function () {

@@ -5,6 +5,8 @@ use Orchid\Platform\Dashboard;
 use Tests\Models\Attachment;
 use Tests\Models\Post;
 
+uses()->group('gallery');
+
 describe('gallery image component', function () {
     it('shows empty value if passed and no collection exists', function () {
         $post = Post::create();
