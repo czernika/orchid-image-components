@@ -15,6 +15,8 @@ use Orchid\Screen\Field;
  * @method self autoFit(string|int $fit)
  * @method self objectFit(string|\Czernika\OrchidImages\Enums\ObjectFit $fit)
  * @method self empty(string $empty)
+ * @method self elements($elements)
+ * @method self height(int|string $height)
  */
 class Gallery extends Field
 {
@@ -25,9 +27,8 @@ class Gallery extends Field
     protected $attributes = [
         'elements' => [],
         'empty' => '',
-        'columns' => 6,
-        'height' => 'auto',
-        'autoFit' => false,
+        'templateColumns' => 'repeat(6, 1fr)',
+        'aspectRatio' => '4 / 3',
         'fit' => 'object-fit-cover', // 'cover', 'contain', 'fill', 'scale', 'none'
     ];
 
@@ -38,34 +39,31 @@ class Gallery extends Field
                 return;
             }
 
-            $value = $this->get('value');
+            // Set grid columns layout
+            $autoFit = $this->get('autoFit', false);
+            $this->set('templateColumns', false !== $autoFit ?
+                sprintf('repeat(auto-fit, minmax(%s, 1fr))', $autoFit) :
+                sprintf('repeat(%s, 1fr)', $this->get('columns', 6))
+            );
 
-            $this->elements($value);
+            $this->elements($this->get('value'));
         });
     }
 
-    public function elements($elements)
+    /**
+     * Set gallery elements to display
+     *
+     * @param mixed $elements
+     * @return static
+     */
+    public function elements($elements): static
     {
         if (is_numeric($elements)) {
             $elements = Dashboard::model(Attachment::class)::find($elements);
         }
 
-        $this->set('elements', Helper::isAttachment($elements) ? [$elements] : collect($elements));
-
-        return $this;
-    }
-
-    /**
-     * Image height
-     *
-     * @param string|integer $height
-     * @return static
-     */
-    public function height(string|int $height): static
-    {
-        $this->set('height', is_int($height) ? "{$height}px" : $height);
-
-        return $this;
+        return $this->set('elements',
+            Helper::isAttachment($elements) ? [$elements] : collect($elements));
     }
 
     /**
@@ -76,34 +74,40 @@ class Gallery extends Field
      */
     public function autoFit(string|int $fit): static
     {
-        $this->set('autoFit', is_int($fit) ? sprintf('%spx', $fit) : $fit);
-
-        return $this;
+        return $this->set('autoFit', is_numeric($fit) ? "{$fit}px" : $fit);
     }
 
     /**
-     * Number of columns
+     * Set number of columns in one row
      *
      * @param integer $columns
      * @return static
      */
     public function columns(int $columns): static
     {
-        $this->set('columns', $columns);
-
-        return $this;
+        return $this->set('columns', $columns);
     }
 
     /**
-     * Text to display when there are no images
+     * Set aspect-ration CSS property on gallery image
+     *
+     * @param string $ratio
+     * @return static
+     */
+    public function aspectRatio(string $ratio): static
+    {
+        return $this->set('aspectRatio', $ratio);
+    }
+
+    /**
+     * Value to display when there are no images
+     * Accepts raw HTML
      *
      * @param string $empty
      * @return static
      */
     public function empty(string $empty): static
     {
-        $this->set('empty', $empty);
-
-        return $this;
+        return $this->set('empty', $empty);
     }
 }

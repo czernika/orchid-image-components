@@ -1,9 +1,10 @@
 @component($typeForm, get_defined_vars())
     <ul
         class="list-unstyled oi-gallery"
-        style="grid-template-columns: repeat({{ $autoFit === false ? $columns : 'auto-fit' }}, {{ $autoFit === false ? '1fr' : $autoFit }});">
+        style="grid-template-columns: {{ $templateColumns }};"
+    >
         @forelse ($elements as $item)
-            <li class="oi-image" style="height: {{ $height }};">
+            <li class="oi-image" style="--oi-gallery-aspect-ratio: {{ $aspectRatio }};">
                 <img
                     @class([
                         'border d-block rounded w-100 h-100',
@@ -15,7 +16,7 @@
                 />
             </li>
         @empty
-            <li>{{ $empty }}</li>
+            <li class="oi-gallery__empty">{!! $empty !!}</li>
         @endforelse
     </ul>
 @endcomponent

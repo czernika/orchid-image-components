@@ -1,19 +1,17 @@
 @component($typeForm, get_defined_vars())
 <div data-controller="lightbox">
-
-    <ul class="list-unstyled oi-gallery oi-lightbox" style="grid-template-columns: repeat({{ $autoFit === false ? $columns : 'auto-fit' }}, {{ $autoFit === false ? '1fr' : $autoFit }});">
+    <ul
+        class="list-unstyled oi-gallery oi-lightbox" style="grid-template-columns: {{ $templateColumns }};"
+    >
         @forelse ($elements as $item)
-            <li class="">
+            <li>
                 <a
                     href="{{ $item->url() }}"
                     class="glightbox oi-image d-block"
-                    style="height: {{ $height }};"
-                    data-gallery="{{ $id }}"
-                    data-type="image"
-                    data-effect="zoom"
-                    data-zoomable="true"
-                    data-draggable="true"
-                    data-height="100%"
+                    style="--oi-gallery-aspect-ratio: {{ $aspectRatio }};"
+                    data-gallery="oi-gallery-{{ $id }}"
+
+                    {{ $dataAttributes }}
                 >
                     <img
                         @class([
@@ -27,7 +25,7 @@
                 </a>
             </li>
         @empty
-            <li>{{ $empty }}</li>
+            <li class="oi-gallery__empty">{!! $empty !!}</li>
         @endforelse
     </ul>
 

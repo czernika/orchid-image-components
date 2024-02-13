@@ -11,6 +11,8 @@ use Orchid\Support\Color;
  * @method self alt(string $alt)
  * @method self size(string|int $size)
  * @method self placeholder(string $placeholder)
+ * @method self badge($badge)
+ * @method self badgeType(\Orchid\Support\Color $type)
  */
 class Avatar extends Image
 {
@@ -39,12 +41,24 @@ class Avatar extends Image
         });
     }
 
-    public function badge($badge)
+    /**
+     * Set avatar badge value
+     *
+     * @param mixed $badge
+     * @return static
+     */
+    public function badge($badge): static
     {
         return $this->set('badge', $badge);
     }
 
-    public function badgeType(Color $type)
+    /**
+     * Set avatar badge color type
+     *
+     * @param Color $type
+     * @return static
+     */
+    public function badgeType(Color $type): static
     {
         return $this->set('badgeType', $type->name());
     }

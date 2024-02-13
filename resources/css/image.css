@@ -22,7 +22,15 @@
 
 .oi-gallery {
     display: grid;
-    gap: 1rem;
+    gap: var(--oi-gallery-gap, 1rem);
+
+    .oi-image {
+        aspect-ratio: var(--oi-gallery-aspect-ratio, 4 / 3);
+    }
+
+    &__empty {
+        grid-column: 1 / -1;
+    }
 }
 
 .oi-avatar {
