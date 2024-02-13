@@ -13,7 +13,7 @@ use Orchid\Screen\Field;
 /**
  * @method self columns(int $columns)
  * @method self autoFit(string|int $fit)
- * @method self objectFit(string|\Czernika\OrchidImages\Enums\ImageObjectFit $fit)
+ * @method self objectFit(string|\Czernika\OrchidImages\Enums\ObjectFit $fit)
  * @method self empty(string $empty)
  */
 class Gallery extends Field

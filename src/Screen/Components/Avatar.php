@@ -4,100 +4,48 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
-use Czernika\OrchidImages\Support\Helper;
-use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
-use Orchid\Screen\Field;
+use Orchid\Support\Color;
 
 /**
- * @method self src(string $src)
+ * @method self src(string|Attachment $src)
  * @method self alt(string $alt)
  * @method self size(string|int $size)
  * @method self placeholder(string $placeholder)
  */
-class Avatar extends Field
+class Avatar extends Image
 {
     protected $view = 'orchid-images::components.avatar';
 
     protected $attributes = [
+        'height' => '3rem',
+        'width' => '3rem',
         'src' => null,
         'alt' => '',
-        'size' => '48px',
         'placeholder' => null,
+        'badge' => false,
+        'badgeType' => 'primary',
     ];
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->addBeforeRender(function () {
-            $value = $this->get('value');
+            $badge = $this->get('badge');
 
-            if (is_numeric($value)) {
-                $value = Dashboard::model(Attachment::class)::find($value);
-            }
-
-            if (is_null($this->get('src'))) {
-                $placeholder = $this->get('placeholder');
-
-                $this->set('src', Helper::isAttachment($value) ?
-                    $value->url($placeholder) :
-                    (is_null($value) ? $placeholder : $value));
-            }
-
-            if ('' === $this->get('alt')) {
-                $this->set('alt', Helper::isAttachment($value) ? $value->alt : '');
+            if (is_callable($badge)) {
+                $this->set('badge', value($badge, $this->get('value')));
             }
         });
     }
 
-    /**
-     * Image src attribute
-     *
-     * @param string $src
-     * @return static
-     */
-    public function src(string $src): static
+    public function badge($badge)
     {
-        $this->set('src', $src);
-
-        return $this;
+        return $this->set('badge', $badge);
     }
 
-    /**
-     * Both width and height
-     *
-     * @param string|int $size
-     * @return static
-     */
-    public function size(string|int $size): static
+    public function badgeType(Color $type)
     {
-        $this->set('size', is_int($size) ? "{$size}px" : $size);
-
-        return $this;
-    }
-
-    /**
-     * Placeholder URL if there are no image passed
-     *
-     * @param string $placeholder
-     * @return static
-     */
-    public function placeholder(string $placeholder): static
-    {
-        $this->set('placeholder', $placeholder);
-
-        return $this;
-    }
-
-    /**
-     * Image alt attribute
-     *
-     * @param string $alt
-     * @return static
-     */
-    public function alt(string $alt): static
-    {
-        $this->set('alt', $alt);
-
-        return $this;
+        return $this->set('badgeType', $type->name());
     }
 }

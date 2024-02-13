@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Enums;
 
-enum ImageObjectFit: string
+enum ObjectFit: string
 {
     case COVER = 'cover';
 

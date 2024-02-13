@@ -1,5 +1,7 @@
 .oi-image {
     max-width: 100%;
+    width: var(--oi-image-width, 100%);
+    height: var(--oi-image-height, auto);
 
     & > img {
         display: block;
@@ -21,4 +23,26 @@
 .oi-gallery {
     display: grid;
     gap: 1rem;
+}
+
+.oi-avatar {
+    width: var(--oi-avatar-width, 3rem);
+    height: var(--oi-avatar-height, 3rem);
+
+    position: relative;
+    isolation: isolate;
+}
+
+.oi-avatar__badge {
+    position: absolute;
+    z-index: 1;
+    padding: max(calc(var(--oi-avatar-width, 3rem) / 10), .5rem);
+    font-size: max(calc(var(--oi-avatar-width, 3rem) / 10), .7rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+
+    top: 7.5%;
+    left: 70%;
 }

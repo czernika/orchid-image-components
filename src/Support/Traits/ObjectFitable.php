@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Support\Traits;
 
-use Czernika\OrchidImages\Enums\ImageObjectFit;
+use Czernika\OrchidImages\Enums\ObjectFit;
 
 trait ObjectFitable
 {
-    public function objectFit(string|ImageObjectFit $fit): static
+    public function objectFit(string|ObjectFit $fit): static
     {
-        if (is_a($fit, ImageObjectFit::class)) {
+        if (is_a($fit, ObjectFit::class)) {
             $fit = $fit->value;
         }
 
-        $this->set('fit', sprintf('object-fit-%s', $fit));
-
-        return $this;
+        // It needs to be compatible with Bootstrap class
+        return $this->set('fit', sprintf('object-fit-%s', $fit));
     }
 }
