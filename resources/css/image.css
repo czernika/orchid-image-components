@@ -31,18 +31,25 @@
 
     position: relative;
     isolation: isolate;
+
+    &__badge {
+        position: absolute;
+        z-index: 1;
+        padding: max(calc(var(--oi-avatar-width, 3rem) / 10), .5rem);
+        font-size: max(calc(var(--oi-avatar-width, 3rem) / 10), .7rem);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10%;
+
+        top: 7.5%;
+        left: 70%;
+    }
 }
 
-.oi-avatar__badge {
-    position: absolute;
-    z-index: 1;
-    padding: max(calc(var(--oi-avatar-width, 3rem) / 10), .5rem);
-    font-size: max(calc(var(--oi-avatar-width, 3rem) / 10), .7rem);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10%;
-
-    top: 7.5%;
-    left: 70%;
+[dir="rtl"] {
+    .oi-avatar__badge {
+        left: auto;
+        right: 70%;
+    }
 }
