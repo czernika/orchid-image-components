@@ -3,6 +3,10 @@
     width: var(--oi-image-width, 100%);
     height: var(--oi-image-height, auto);
 
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    overflow: hidden;
+
     & > img {
         display: block;
         width: 100%;

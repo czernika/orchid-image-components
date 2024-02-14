@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Czernika\OrchidImages\Support\Traits;
+namespace Czernika\OrchidImages\Screen\Components\Traits;
 
 use Czernika\OrchidImages\Enums\ObjectFit;
 

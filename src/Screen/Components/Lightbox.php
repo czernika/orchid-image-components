@@ -4,6 +4,15 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
+/**
+ * @method self autoFit(string|int $fit)
+ * @method self objectFit(string|\Czernika\OrchidImages\Enums\ObjectFit $fit)
+ * @method self empty(string $empty)
+ * @method self aspectRatio(string $ratio)
+ * @method self elements($elements)
+ * @method self zoomable(bool $zoom = true)
+ * @method self dragable(bool $drag = true)
+ */
 class Lightbox extends Gallery
 {
     protected $view = 'orchid-images::components.lightbox';

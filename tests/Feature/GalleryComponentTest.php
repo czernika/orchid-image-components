@@ -25,7 +25,7 @@ describe('elements', function () {
             'thumb_id' => $attachment->id,
         ]);
 
-        $rendered = $this->renderComponent(Gallery::make('post.thumb_id'),
+        $rendered = $this->renderComponent(Gallery::make('post.thumb'),
                         compact('post'));
 
         expect($rendered)->toContain(sprintf('src="%s"', $attachment->url()));
@@ -40,6 +40,45 @@ describe('elements', function () {
                         ->elements($post->attachment));
 
         expect($rendered)->toContain(sprintf('src="%s"', $attachment->url()));
+    });
+
+    it('renders grid if data was passed as array of links', function () {
+        $rendered = $this->renderComponent(Gallery::make('gallery')
+                        ->elements(['https://some.url']));
+
+        expect($rendered)->toContain('src="https://some.url"');
+    });
+
+    it('renders grid if data was passed as array of attachments', function () {
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $rendered = $this->renderComponent(Gallery::make('gallery')
+                        ->elements([$attachment]));
+
+        expect($rendered)->toContain(sprintf('src="%s"', $attachment->url()));
+    });
+
+    it('renders grid if data was passed from query', function () {
+        Dashboard::model(Attachment::class)::factory(2)->create();
+        $rendered = $this->renderComponent(Gallery::make('gallery')
+                        ->elements(Dashboard::model(Attachment::class)::query()->get()));
+
+        expect($rendered)->toContain(sprintf('src="%s"', Dashboard::model(Attachment::class)::first()->url()));
+    });
+
+    it('renders grid if data was passed as associative array of links', function () {
+        $rendered = $this->renderComponent(Gallery::make('gallery')
+                        ->elements([
+                            [
+                                'url' => 'https://some.url',
+                                'alt' => 'Some alt',
+                                'title' => 'Some title',
+                            ],
+                        ]));
+
+        expect($rendered)
+            ->toContain('alt="Some alt"')
+            ->toContain('title="Some title"')
+            ->toContain('src="https://some.url"');
     });
 })->group('gallery.elements');
 
@@ -56,22 +95,34 @@ describe('empty', function () {
 
 describe('layout', function () {
     it('shows 6 columns by default', function () {
-        $rendered = $this->renderComponent(Gallery::make('gallery'));
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Gallery::make('post.attachment'), compact('post'));
 
         expect($rendered)->toContain('style="grid-template-columns: repeat(6, 1fr);"');
     });
 
     it('can change number of columns', function () {
-        $rendered = $this->renderComponent(Gallery::make('gallery')
-                            ->columns(3));
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Gallery::make('post.attachment')
+                            ->columns(3), compact('post'));
 
         expect($rendered)->toContain('style="grid-template-columns: repeat(3, 1fr);"');
     });
 
     it('set auto-fit and ignores columns that way', function () {
-        $rendered = $this->renderComponent(Gallery::make('gallery')
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Gallery::make('post.attachment')
                         ->columns(3)
-                        ->autoFit(250));
+                        ->autoFit(250), compact('post'));
 
         expect($rendered)->toContain('style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));"');
     });

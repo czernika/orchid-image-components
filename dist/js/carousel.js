@@ -1,1 +1,1 @@
-class o extends window.Controller{connect(){this.element.querySelectorAll(".oi-carousel").forEach(e=>{new window.Bootstrap.Carousel(e,{})})}}application.register("carousel",o);
+class e extends window.Controller{connect(){this.carousel=new window.Bootstrap.Carousel(this.element.querySelector(".oi-carousel"),{})}}application.register("carousel",e);

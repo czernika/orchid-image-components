@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
-use Czernika\OrchidImages\Support\Traits\ObjectFitable;
+use Czernika\OrchidImages\Screen\Components\Traits\ObjectFitable;
 use Czernika\OrchidImages\Support\Helper;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;

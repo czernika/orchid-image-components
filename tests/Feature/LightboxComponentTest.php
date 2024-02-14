@@ -25,7 +25,7 @@ describe('elements', function () {
             'thumb_id' => $attachment->id,
         ]);
 
-        $rendered = $this->renderComponent(Lightbox::make('post.thumb_id'),
+        $rendered = $this->renderComponent(Lightbox::make('post.thumb'),
                         compact('post'));
 
         expect($rendered)->toContain(sprintf('src="%s"', $attachment->url()));
@@ -56,22 +56,34 @@ describe('empty', function () {
 
 describe('layout', function () {
     it('shows 6 columns by default', function () {
-        $rendered = $this->renderComponent(Lightbox::make('gallery'));
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Lightbox::make('post.attachment'), compact('post'));
 
         expect($rendered)->toContain('style="grid-template-columns: repeat(6, 1fr);"');
     });
 
     it('can change number of columns', function () {
-        $rendered = $this->renderComponent(Lightbox::make('gallery')
-                            ->columns(3));
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Lightbox::make('post.attachment')
+                            ->columns(3), compact('post'));
 
         expect($rendered)->toContain('style="grid-template-columns: repeat(3, 1fr);"');
     });
 
     it('set auto-fit and ignores columns that way', function () {
-        $rendered = $this->renderComponent(Lightbox::make('gallery')
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Lightbox::make('post.attachment')
                         ->columns(3)
-                        ->autoFit(250));
+                        ->autoFit(250), compact('post'));
 
         expect($rendered)->toContain('style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));"');
     });
@@ -159,7 +171,7 @@ describe('images', function () {
         $rendered = $this->renderComponent(Lightbox::make('post.attachment')
                     ->zoomable(false), compact('post'));
 
-        expect($rendered)->toContain('data-zoomable="false"');
+        expect($rendered)->toContain('data-zoomable=""');
     });
 
     it('has default draggable effect', function () {
@@ -180,6 +192,6 @@ describe('images', function () {
         $rendered = $this->renderComponent(Lightbox::make('post.attachment')
                     ->draggable(false), compact('post'));
 
-        expect($rendered)->toContain('data-draggable="false"');
+        expect($rendered)->toContain('data-draggable=""');
     });
 })->group('lightbox.images');

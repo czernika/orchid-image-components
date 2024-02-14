@@ -4,23 +4,21 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
-use Czernika\OrchidImages\Support\Helper;
-use Czernika\OrchidImages\Support\Traits\ObjectFitable;
-use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
+use Czernika\OrchidImages\Screen\Components\Traits\CanBeEmpty;
+use Czernika\OrchidImages\Screen\Components\Traits\HasElements;
+use Czernika\OrchidImages\Screen\Components\Traits\ObjectFitable;
 use Orchid\Screen\Field;
 
 /**
- * @method self columns(int $columns)
  * @method self autoFit(string|int $fit)
  * @method self objectFit(string|\Czernika\OrchidImages\Enums\ObjectFit $fit)
  * @method self empty(string $empty)
+ * @method self aspectRatio(string $ratio)
  * @method self elements($elements)
- * @method self height(int|string $height)
  */
 class Gallery extends Field
 {
-    use ObjectFitable;
+    use HasElements, ObjectFitable, CanBeEmpty;
 
     protected $view = 'orchid-images::components.gallery';
 
@@ -35,35 +33,17 @@ class Gallery extends Field
     public function __construct()
     {
         $this->addBeforeRender(function () {
-            if (!empty($this->get('elements'))) {
-                return;
-            }
+            $this->setElements();
+        });
 
-            // Set grid columns layout
+        // Set grid columns layout
+        $this->addBeforeRender(function () {
             $autoFit = $this->get('autoFit', false);
             $this->set('templateColumns', false !== $autoFit ?
                 sprintf('repeat(auto-fit, minmax(%s, 1fr))', $autoFit) :
                 sprintf('repeat(%s, 1fr)', $this->get('columns', 6))
             );
-
-            $this->elements($this->get('value'));
         });
-    }
-
-    /**
-     * Set gallery elements to display
-     *
-     * @param mixed $elements
-     * @return static
-     */
-    public function elements($elements): static
-    {
-        if (is_numeric($elements)) {
-            $elements = Dashboard::model(Attachment::class)::find($elements);
-        }
-
-        return $this->set('elements',
-            Helper::isAttachment($elements) ? [$elements] : collect($elements));
     }
 
     /**
@@ -97,17 +77,5 @@ class Gallery extends Field
     public function aspectRatio(string $ratio): static
     {
         return $this->set('aspectRatio', $ratio);
-    }
-
-    /**
-     * Value to display when there are no images
-     * Accepts raw HTML
-     *
-     * @param string $empty
-     * @return static
-     */
-    public function empty(string $empty): static
-    {
-        return $this->set('empty', $empty);
     }
 }
