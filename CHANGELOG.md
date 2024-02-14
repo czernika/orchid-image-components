@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1
+
+- **refactor**: change auto-fit layout for galleries with less than 2 images
+
 ## v2.0.0
 
 - **refactor**: changed code base

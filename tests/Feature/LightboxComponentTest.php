@@ -77,7 +77,7 @@ describe('layout', function () {
     });
 
     it('set auto-fit and ignores columns that way', function () {
-        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $attachment = Dashboard::model(Attachment::class)::factory(2)->create();
         $post = Post::create();
         $post->attachment()->syncWithoutDetaching($attachment);
 
@@ -86,6 +86,18 @@ describe('layout', function () {
                         ->autoFit(250), compact('post'));
 
         expect($rendered)->toContain('style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));"');
+    });
+
+    it('changes auto-fit to auto-fill if there is less than 2 images', function () {
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Lightbox::make('post.attachment')
+                        ->columns(3)
+                        ->autoFit(250), compact('post'));
+
+        expect($rendered)->toContain('style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));"');
     });
 })->group('lightbox.layout');
 

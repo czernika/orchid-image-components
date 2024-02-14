@@ -40,7 +40,7 @@ class Gallery extends Field
         $this->addBeforeRender(function () {
             $autoFit = $this->get('autoFit', false);
             $this->set('templateColumns', false !== $autoFit ?
-                sprintf('repeat(auto-fit, minmax(%s, 1fr))', $autoFit) :
+                sprintf('repeat(%s, minmax(%s, 1fr))', count($this->get('elements')) > 1 ? 'auto-fit' : 'auto-fill', $autoFit) :
                 sprintf('repeat(%s, 1fr)', $this->get('columns', 6))
             );
         });
