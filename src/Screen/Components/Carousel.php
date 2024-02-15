@@ -10,7 +10,15 @@ use Czernika\OrchidImages\Screen\Components\Traits\ObjectFitable;
 use Orchid\Screen\Field;
 
 /**
- * Undocumented class
+ * @method self elements($elements)
+ * @method self empty(string $value)
+ * @method self withControls(bool $value = true)
+ * @method self withIndicator(bool $value = true)
+ * @method self withLightbox(bool $value = true)
+ * @method self fade(bool $value = true)
+ * @method self objectFit(string|\Czernika\OrchidImages\Enums\ObjectFit $fit)
+ * @method self height(string|int $height)
+ * @method self delay(int $delay)
  */
 class Carousel extends Field
 {

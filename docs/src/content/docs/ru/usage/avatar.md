@@ -45,7 +45,7 @@ Avatar::make('user.avatar')
 
 Avatar может отображать значок - маленькая иконка в верхнем углу. Он меняет свои размеры вместе с размерами аватара.
 
-![Three images with different sizes, one after another](../../../assets/avatar-sizes.webp)
+![Three images with different sizes, one after another](../../../../assets/avatar-sizes.webp)
 
 Чтобы передать значение, используйте метод `badge()`.
 
@@ -83,4 +83,4 @@ Avatar::make('user.avatar')
     ->badgeType(Color::DANGER),
 ```
 
-![Avatars with different badge background colors](../../../assets/avatar-types.webp)
+![Avatars with different badge background colors](../../../../assets/avatar-types.webp)

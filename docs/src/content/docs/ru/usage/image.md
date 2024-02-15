@@ -57,7 +57,7 @@ public function layout()
 Image::make('user.avatar_id'),
 ```
 
-![Two column layout with images on the left side](../../../assets/image-columns.webp)
+![Two column layout with images on the left side](../../../../assets/image-columns.webp)
 
 Если же вы храните ссылку на изображение в базе, ничего не меняется
 
@@ -83,7 +83,7 @@ Image::make('user.avatar')
     ->height(150), // 150px
 ```
 
-![Two column layout with images on the left side](../../../assets/image-sizes.webp)
+![Two column layout with images on the left side](../../../../assets/image-sizes.webp)
 
 Метод может принимать не только числа, но и любые валидные CSS значения в виде строки.
 
@@ -128,7 +128,7 @@ Image::make('user.avatar')
     ->objectFit('contain'),
 ```
 
-![Five columns layout with images](../../../assets/image-fit.webp)
+![Five columns layout with images](assets/image-fit.webp)
 
 Также можно использовать перечисление `ObjectFit`.
 
@@ -166,7 +166,7 @@ TD::make()
     )
 ```
 
-![Table with two rows and images on the left side of each row](../../../assets/image-in-table.webp)
+![Table with two rows and images on the left side of each row](assets/image-in-table.webp)
 
 Метод может принимать не только строковые значения, но и модель Attachment.
 

@@ -77,6 +77,15 @@ Carousel::make('post.gallery')
     ->height('50vh'),
 ```
 
+### Animation
+
+If you wish to use fade animation use the `fade()` method
+
+```php
+Carousel::make('post.gallery')
+    ->fade(),
+```
+
 ### Combine with Lightbox
 
 By default, you cannot zoom image in a carousel. But if you wish, you may combine it with lightbox.

@@ -10,7 +10,7 @@ Avatar::make()
     ->title('Hey look it\'s a kitten!'),
 ```
 
-![Gray kitten](../../../assets/image-title.webp)
+![Gray kitten](../../../../assets/image-title.webp)
 
 ## Компоненты
 

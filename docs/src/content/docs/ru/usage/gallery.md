@@ -7,7 +7,7 @@ sidebar:
 
 Gallery представляет из себя сетку неинтерактивных изображений - вы не можете кликнуть по ним, чтобы увеличить (для этого используется компонент [Lightbox](/orchid-image-components/usage/lightbox)).
 
-![Four images in a row in a six columns grid](../../../assets/gallery-default.webp)
+![Four images in a row in a six columns grid](../../../../assets/gallery-default.webp)
 
 ## Использование
 
@@ -72,7 +72,7 @@ Gallery::make()
 
 Данная запись эквивалентна `grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))`
 
-![Four images in a row](../../../assets/gallery-default.webp)
+![Four images in a row](../../../../assets/gallery-default.webp)
 
 Выглядит она так же на скриншоте, как если бы использовали 4 колонки, но если четвертой картинке не хватит места (она должна быть как минимум 200 пикселей в ширину), то она перепрыгнет на следующий ряд, а сетка будет иметь вид трех колонок. Если же в коллекции меньше двух изображений, `auto-fit` будет заменен на `auto-fill`, чтобы предотвратить чрезмерное растяжение картинки.
 

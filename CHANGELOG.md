@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.0.2
+
+- **chore**: updated deps
+- **docs**: added docs
+
 ## v2.0.1
 
 - **refactor**: change auto-fit layout for galleries with less than 2 images
