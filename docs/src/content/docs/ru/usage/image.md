@@ -128,7 +128,7 @@ Image::make('user.avatar')
     ->objectFit('contain'),
 ```
 
-![Five columns layout with images](assets/image-fit.webp)
+![Five columns layout with images](../../../../assets/image-fit.webp)
 
 Также можно использовать перечисление `ObjectFit`.
 
@@ -166,7 +166,7 @@ TD::make()
     )
 ```
 
-![Table with two rows and images on the left side of each row](assets/image-in-table.webp)
+![Table with two rows and images on the left side of each row](../../../../assets/image-in-table.webp)
 
 Метод может принимать не только строковые значения, но и модель Attachment.
 
