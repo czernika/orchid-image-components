@@ -59,6 +59,12 @@ Image::make('user.avatar_id'),
 
 ![Two column layout with images on the left side](../../../assets/image-columns.webp)
 
+If you store URL in database it still is valid option.
+
+```php
+Image::make('user.avatar_url'),
+```
+
 ### External image
 
 A path to an image can be passed directly to a `src()` method; more details can be found [here](#src).

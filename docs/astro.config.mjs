@@ -13,11 +13,10 @@ export default defineConfig({
             defaultLocale: 'root',
             locales: {
                 root: { label: 'En', lang: 'en' },
-                // ru: { label: 'Ru' },
+                ru: { label: 'Ru' },
             },
 			title: 'Orchid Images v2.x',
-            // description: '',
-            // logo: '',
+            description: 'Package that adds new image-based components to your Orchid app',
 			social: {
 				github: 'https://github.com/czernika/orchid-image-components',
 			},

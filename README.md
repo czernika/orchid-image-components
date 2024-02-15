@@ -1,5 +1,7 @@
 # Orchid Image Components
 
+[![Tests](https://github.com/czernika/orchid-image-components/actions/workflows/tests.yml/badge.svg)](https://github.com/czernika/orchid-image-components/actions/workflows/tests.yml)
+
 Adds new image components to preview uploaded (or external) images for Laravel [Orchid](https://orchid.software/) admin panel. Mostly used for "show" type screens where presentation may be important
 
 ## Support

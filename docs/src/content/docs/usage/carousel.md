@@ -41,7 +41,7 @@ The options differ from Gallery; it does not accept layout parameters such as `c
 
 ### Control elements
 
-You may use control buttons (prev-next slide) or indicators (bullets) with next methods.
+You may use control buttons (prev-next slide) or indicators (bullets) with next methods:
 
 ```php
 Carousel::make('post.gallery')

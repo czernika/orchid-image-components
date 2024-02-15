@@ -35,7 +35,7 @@ See [size for Image](/orchid-image-components/usage/image#sizes).
 
 ### Placeholder
 
-See [placeholder Image](/orchid-image-components/usage/image#placeholder).
+See [placeholder for Image](/orchid-image-components/usage/image#placeholder).
 
 ### Src
 
@@ -84,9 +84,3 @@ Avatar::make('user.avatar')
 ```
 
 ![Avatars with different badge background colors](../../../assets/avatar-types.webp)
-
-### Gallery max width
-
-:::caution
-In development
-:::

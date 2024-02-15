@@ -5,7 +5,7 @@ sidebar:
     order: 4
 ---
 
-Lightbox component represents interactive gallery and is based on [Gallery](/orchid-image-components/usage/gallery) with identical API.
+The Lightbox component represents interactive gallery and is based on [Gallery](/orchid-image-components/usage/gallery) with identical API.
 
 :::caution
 Both JavaScript and CSS files for lightbox needs to be registered within your admin panel.
@@ -75,24 +75,3 @@ Lightbox::make('post.gallery')
 :::caution
 In development
 :::
-
-### Caption
-
-Next settings are related to glightbox options.
-
-:::caution
-In development
-:::
-
-### Caption position
-
-:::caution
-In development
-:::
-
-### Description
-
-:::caution
-In development
-:::
-
