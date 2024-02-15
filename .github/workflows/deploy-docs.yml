@@ -18,38 +18,48 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout your repository using git
+        uses: actions/checkout@v3
+      - name: Install, build, and upload your site
+        uses: withastro/action@v1
         with:
-          fetch-depth: 1
-
-      - name: Print commit id, message and tag
-        run: |
-          git show -s --format='%h %s'
-          echo "github.ref -> {{ github.ref }}"
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-
-      - name: Setup Node (Bun)
-        uses: actions/setup-node@v4
-        with:
+          path: docs
           node-version: 18
+          package-manager: bun@latest
+          
+    # steps:
+    #   - name: Checkout code
+    #     uses: actions/checkout@v4
+    #     with:
+    #       fetch-depth: 1
 
-      - name: Install dependencies
-        shell: "bash"
-        working-directory: docs
-        run: bun install
+    #   - name: Print commit id, message and tag
+    #     run: |
+    #       git show -s --format='%h %s'
+    #       echo "github.ref -> {{ github.ref }}"
 
-      - name: Build
-        shell: "bash"
-        working-directory: docs
-        run: bun run build
+    #   - name: Setup Bun
+    #     uses: oven-sh/setup-bun@v1
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./docs/dist
+    #   - name: Setup Node (Bun)
+    #     uses: actions/setup-node@v4
+    #     with:
+    #       node-version: 18
+
+    #   - name: Install dependencies
+    #     shell: "bash"
+    #     working-directory: docs
+    #     run: bun install
+
+    #   - name: Build
+    #     shell: "bash"
+    #     working-directory: docs
+    #     run: bun run build
+
+    #   - name: Upload artifact
+    #     uses: actions/upload-pages-artifact@v2
+    #     with:
+    #       path: ./docs/dist
 
   deploy:
     needs: build
