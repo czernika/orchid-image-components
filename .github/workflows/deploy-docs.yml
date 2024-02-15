@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-    # paths:
-    #   - "docs/**/*.md"
+    paths:
+      - "docs/**/*.md"
   workflow_dispatch:
 
 # Allow this job to clone the repo and create a page deployment
@@ -26,40 +26,6 @@ jobs:
           path: docs
           node-version: 18
           package-manager: bun@latest
-          
-    # steps:
-    #   - name: Checkout code
-    #     uses: actions/checkout@v4
-    #     with:
-    #       fetch-depth: 1
-
-    #   - name: Print commit id, message and tag
-    #     run: |
-    #       git show -s --format='%h %s'
-    #       echo "github.ref -> {{ github.ref }}"
-
-    #   - name: Setup Bun
-    #     uses: oven-sh/setup-bun@v1
-
-    #   - name: Setup Node (Bun)
-    #     uses: actions/setup-node@v4
-    #     with:
-    #       node-version: 18
-
-    #   - name: Install dependencies
-    #     shell: "bash"
-    #     working-directory: docs
-    #     run: bun install
-
-    #   - name: Build
-    #     shell: "bash"
-    #     working-directory: docs
-    #     run: bun run build
-
-    #   - name: Upload artifact
-    #     uses: actions/upload-pages-artifact@v2
-    #     with:
-    #       path: ./docs/dist
 
   deploy:
     needs: build

@@ -12,7 +12,7 @@ Version 2.x requires PHP at least 8.1, Orchid version 14.x and Laravel version 1
 
 ## Docs
 
-[In progress](https://aliha.ru)
+Documentation for this project can be found [here](https://czernika.github.io/orchid-image-components/)
 
 ## Testing
 
