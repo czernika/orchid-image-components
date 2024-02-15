@@ -18,18 +18,41 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Install, build, and upload your site
-        uses: withastro/action@v1
         with:
-          path: docs # The root location of your Astro project inside the repository. (optional)
+          fetch-depth: 1
+
+      - name: Print commit id, message and tag
+        run: |
+          git show -s --format='%h %s'
+          echo "github.ref -> {{ github.ref }}"
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Setup Node (Bun)
+        uses: actions/setup-node@v4
+        with:
           node-version: 18
-          package-manager: bun@latest
+
+      - name: Install dependencies
+        shell: "bash"
+        working-directory: docs
+        run: bun install
+
+      - name: Build
+        shell: "bash"
+        working-directory: docs
+        run: bun run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./docs/dist
 
   deploy:
-    needs: build
+    needs: build-monorepo
     runs-on: ubuntu-latest
     environment:
       name: github-pages
