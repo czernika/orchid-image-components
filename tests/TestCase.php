@@ -16,6 +16,9 @@ use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Repository as ScreenRepository;
 use Plannr\Laravel\FastRefreshDatabase\Traits\FastRefreshDatabase;
 use Tests\Models\Attachment;
+use Orchid\Support\Facades\Alert;
+use Tabuna\Breadcrumbs\Breadcrumbs;
+use Watson\Active\Active;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -31,6 +34,7 @@ abstract class TestCase extends BaseTestCase
             return "Database\Factories\\$factoryBasename".'Factory';
         });
 
+        // Use our test mockup model instead
         Dashboard::useModel(OrchidAttachment::class, Attachment::class);
     }
 
@@ -52,6 +56,19 @@ abstract class TestCase extends BaseTestCase
                 'prefix'   => '',
             ]);
         });
+    }
+
+    /**
+     * @param  \Illuminate\Foundation\Application  $app
+     */
+    protected function getPackageAliases($app): array
+    {
+        return [
+            'Alert' => Alert::class,
+            'Active' => Active::class,
+            'Breadcrumbs' => Breadcrumbs::class,
+            'Dashboard' => Dashboard::class,
+        ];
     }
 
     protected function defineDatabaseMigrations()

@@ -4,6 +4,7 @@ use Czernika\OrchidImages\Screen\Components\Avatar;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 use Orchid\Support\Color;
+use Tests\Models\Attachment as TestAttachment;
 use Tests\Models\AttachmentWithPlaceholder;
 use Tests\Models\Post;
 
@@ -36,7 +37,7 @@ describe('src', function () {
         $rendered = $this->renderComponent(Avatar::make('avatar')
                         ->src($url = fake()->imageUrl()));
 
-        expect($rendered)->toContain("src=\"$url\"");
+        expect($rendered)->toContain(sprintf('src="%s"', $url));
     });
 
     it('can be changed with attachment value', function () {
@@ -69,11 +70,11 @@ describe('placeholder', function () {
             'thumb_id' => $thumb->id,
         ]);
 
-        Dashboard::useModel(Attachment::class, Attachment::class);
-
         $rendered = $this->renderComponent(Avatar::make('post.thumb_id')
             ->placeholder('/img/placeholder.webp'), compact('post'));
 
+        Dashboard::useModel(Attachment::class, TestAttachment::class);
+    
         expect($rendered)->toContain('src="/img/placeholder.webp"');
     });
 

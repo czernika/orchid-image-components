@@ -62,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Illuminate\Foundation\Auth\User::class,
+            'model' => \Orchid\Platform\Models\User::class,
         ],
 
         // 'users' => [

@@ -4,6 +4,7 @@ use Czernika\OrchidImages\Enums\ObjectFit;
 use Czernika\OrchidImages\Screen\Components\Image;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
+use Tests\Models\Attachment as TestAttachment;
 use Tests\Models\AttachmentWithPlaceholder;
 use Tests\Models\Post;
 
@@ -69,10 +70,10 @@ describe('placeholder', function () {
             'thumb_id' => $thumb->id,
         ]);
 
-        Dashboard::useModel(Attachment::class, Attachment::class);
-
         $rendered = $this->renderComponent(Image::make('post.thumb_id')
             ->placeholder('/img/placeholder.webp'), compact('post'));
+
+        Dashboard::useModel(Attachment::class, TestAttachment::class);
 
         expect($rendered)->toContain('src="/img/placeholder.webp"');
     });

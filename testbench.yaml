@@ -1,1 +1,17 @@
 laravel: ./skeleton
+
+workbench:
+  install: true
+  discovers:
+    web: true
+    api: false
+    commands: false
+    components: false
+    views: false
+  build:
+    - asset-publish
+    - create-sqlite-db
+    - migrate:refresh
+  assets:
+    - orchid-assets
+  sync: []

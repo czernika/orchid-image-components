@@ -15,11 +15,15 @@ class AttachmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'hashed-thumb.jpg',
+            'name' => 'hashed-thumb',
             'original_name' => fake()->word,
             'mime' => 'image/jpg',
             'extension' => 'jpg',
             'path' => 'uploads/2023/',
+            'disk' => 'public',
+            'sort' => 0,
+            'size' => 0,
+            'hash' => 'hash',
         ];
     }
 }

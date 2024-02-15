@@ -22,7 +22,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
-        "test": "./vendor/bin/pest",
+        "test": "./vendor/bin/pest --bail",
         "post-autoload-dump": [
             "@clear",
             "@prepare"
