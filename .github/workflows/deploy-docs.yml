@@ -52,7 +52,7 @@ jobs:
           path: ./docs/dist
 
   deploy:
-    needs: build-monorepo
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
