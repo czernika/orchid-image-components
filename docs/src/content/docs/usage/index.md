@@ -14,8 +14,8 @@ Avatar::make()
 
 ## Components
 
-- [Image](/usage/image)
-- [Avatar](/usage/avatar)
-- [Gallery](/usage/gallery)
-- [Lightbox](/usage/lightbox)
-- [Carousel](/usage/carousel)
+- [Image](/orchid-image-components/usage/image)
+- [Avatar](/orchid-image-components/usage/avatar)
+- [Gallery](/orchid-image-components/usage/gallery)
+- [Lightbox](/orchid-image-components/usage/lightbox)
+- [Carousel](/orchid-image-components/usage/carousel)

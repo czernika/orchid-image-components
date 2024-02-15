@@ -5,7 +5,7 @@ sidebar:
     order: 4
 ---
 
-Lightbox component represents interactive gallery and is based on [Gallery](/usage/gallery) with identical API.
+Lightbox component represents interactive gallery and is based on [Gallery](/orchid-image-components/usage/gallery) with identical API.
 
 :::caution
 Both JavaScript and CSS files for lightbox needs to be registered within your admin panel.
@@ -30,7 +30,7 @@ The front of this component is based on [glightbox](https://github.com/biati-dig
 
 ## Usage
 
-Identical to [Gallery](/usage/gallery#usage) you need to register relations or pass elements manually via `elements()` method.
+Identical to [Gallery](/orchid-image-components/usage/gallery#usage) you need to register relations or pass elements manually via `elements()` method.
 
 ```php
 use Czernika\OrchidImages\Screen\Components\Lightbox;
@@ -41,24 +41,24 @@ Lightbox::make('post.gallery'),
 ## Options
 
 :::note
-Most of them are the same as for [Gallery](/usage/gallery#options).
+Most of them are the same as for [Gallery](/orchid-image-components/usage/gallery#options).
 :::
 
 ### Columns
 
-See [columns for Gallery](/usage/gallery#columns).
+See [columns for Gallery](/orchid-image-components/usage/gallery#columns).
 
 ### Fit property
 
-See [fit property for Gallery](/usage/gallery#fit-property).
+See [fit property for Gallery](/orchid-image-components/usage/gallery#fit-property).
 
 ### Empty value
 
-See [empty value for Gallery](/usage/gallery#empty-value).
+See [empty value for Gallery](/orchid-image-components/usage/gallery#empty-value).
 
 ### Elements
 
-See [element for Gallery](/usage/gallery#elements).
+See [element for Gallery](/orchid-image-components/usage/gallery#elements).
 
 ### Glightbox options
 

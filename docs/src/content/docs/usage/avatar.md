@@ -7,7 +7,7 @@ sidebar:
 
 ## Usage
 
-The Avatar component is very similar to [Image](/usage/image). It represents a completely round image and ignores the `fit()` property; other than that, every other method is valid.
+The Avatar component is very similar to [Image](/orchid-image-components/usage/image). It represents a completely round image and ignores the `fit()` property; other than that, every other method is valid.
 
 ```php
 use Czernika\OrchidImages\Screen\Components\Avatar;
@@ -22,24 +22,24 @@ Avatar::make('user.avatar')
 ## Options
 
 :::note
-Most of them are the same as for [Image](/usage/image#options).
+Most of them are the same as for [Image](/orchid-image-components/orchid-image-components/usage/image#options).
 :::
 
 ### Alt
 
-See [alt for Image](/usage/image#alt).
+See [alt for Image](/orchid-image-components/usage/image#alt).
 
 ### Size
 
-See [size for Image](/usage/image#sizes).
+See [size for Image](/orchid-image-components/usage/image#sizes).
 
 ### Placeholder
 
-See [placeholder Image](/usage/image#placeholder).
+See [placeholder Image](/orchid-image-components/usage/image#placeholder).
 
 ### Src
 
-See [src for Image](/usage/image#src).
+See [src for Image](/orchid-image-components/usage/image#src).
 
 ### Badge
 

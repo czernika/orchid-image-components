@@ -38,4 +38,4 @@ Image::make('post.thumb'), // Show post thumb
 Gallery::make('post.attachment'), // Show every post attachment
 ```
 
-You can find more in the [Usage](/usage) section of this documentation.
+You can find more in the [Usage](/orchid-image-components/usage) section of this documentation.

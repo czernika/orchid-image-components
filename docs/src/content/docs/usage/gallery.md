@@ -5,7 +5,7 @@ sidebar:
     order: 3
 ---
 
-The Gallery component represents a grid of non-interactive images - you cannot click on them in order to zoom (that is where [Lightbox](/usage/lightbox) used).
+The Gallery component represents a grid of non-interactive images - you cannot click on them in order to zoom (that is where [Lightbox](/orchid-image-components/usage/lightbox) used).
 
 ![Four images in a row in a six columns grid](../../../assets/gallery-default.webp)
 
@@ -42,7 +42,7 @@ use Czernika\OrchidImages\Screen\Components\Gallery;
 Gallery::make('post.gallery'),
 ```
 
-It can be created even with a singular instance (despite it has no sense - use [Image](/usage/image) instead).
+It can be created even with a singular instance (despite it has no sense - use [Image](/orchid-image-components/usage/image) instead).
 
 ```php
 Gallery::make('post.thumb'),
@@ -78,7 +78,7 @@ It looks exactly the same if you set 4 columns, but if there is no room for 4th 
 
 ### Fit property
 
-Applied for every image in the gallery. See [fit for Image](/usage/image#fit-property).
+Applied for every image in the gallery. See [fit for Image](/orchid-image-components/usage/image#fit-property).
 
 ### Empty value
 

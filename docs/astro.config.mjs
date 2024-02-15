@@ -3,6 +3,8 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+    site: 'czernika.github.io',
+    base: 'orchid-image-components',
     image: {
         service: squooshImageService(),
     },

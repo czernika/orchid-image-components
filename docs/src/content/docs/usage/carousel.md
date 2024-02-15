@@ -9,7 +9,7 @@ sidebar:
 
 The Carousel component is based on [the Bootstrap carousel](https://getbootstrap.com/docs/5.0/components/carousel/) and looks alike. 
 
-Identical to [Gallery](/usage/gallery#usage) you need to register relations or pass elements manually via the `elements()` method.
+Identical to [Gallery](/orchid-image-components/usage/gallery#usage) you need to register relations or pass elements manually via the `elements()` method.
 
 ```php
 use Czernika\OrchidImages\Screen\Components\Carousel;
@@ -51,15 +51,15 @@ Carousel::make('post.gallery')
 
 ### Fit property
 
-See [fit property for Gallery](/usage/gallery#fit-property).
+See [fit property for Gallery](/orchid-image-components/usage/gallery#fit-property).
 
 ### Empty value
 
-See [empty value for Gallery](/usage/gallery#empty-value).
+See [empty value for Gallery](/orchid-image-components/usage/gallery#empty-value).
 
 ### Elements
 
-See [element for Gallery](/usage/gallery#elements).
+See [element for Gallery](/orchid-image-components/usage/gallery#elements).
 
 ### Size
 
