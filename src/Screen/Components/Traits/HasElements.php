@@ -36,8 +36,8 @@ trait HasElements
         }
 
         // it can be singular attachment instance
-        if (Helper::isAttachment($elements)) {
-            return $this->set('elements', [$elements]);
+        if ($elements instanceof Attachment) {
+            return $this->set('elements', $elements?->exists ? [$elements] : []);
         }
 
         if (is_array($elements) && !empty($elements)) {
@@ -51,6 +51,10 @@ trait HasElements
             $elements = collect($elements)->mapInto(URLToAttachmentMapper::class);
         }
 
-        return $this->set('elements', is_null($elements) ? [] : $elements);
+        if (is_null($elements)) {
+            return $this->set('elements', []);
+        }
+
+        return $this->set('elements', $elements);
     }
 }

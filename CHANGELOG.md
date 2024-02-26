@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.3
+
+- **fix**: fixing error when empty value was not shown when relation has `withDefault()`
+
 ## v2.0.2
 
 - **chore**: updated deps

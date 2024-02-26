@@ -18,15 +18,12 @@ jobs:
         php: [8.1, 8.2, 8.3]
         laravel: [10.*]
         testbench: [8.*]
-
-        ## Prepare for Laravel 11
-        # php: [8.1, 8.2, 8.3]
         # laravel: [10.*, 11.*]
         # include:
         #   - laravel: 11.*
-        #   - testbench: 9.*
+        #   - testbench: ^9.0
         #   - laravel: 10.*
-        #   - testbench: 8.*
+        #   - testbench: ^8.0
         # exclude:
         #   - laravel: 11.*
         #     php: 8.1

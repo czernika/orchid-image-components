@@ -5,6 +5,7 @@ use Czernika\OrchidImages\Screen\Components\Lightbox;
 use Orchid\Platform\Dashboard;
 use Tests\Models\Attachment;
 use Tests\Models\Post;
+use Tests\Models\PostWithDefault;
 
 uses()->group('lightbox');
 
@@ -40,6 +41,15 @@ describe('elements', function () {
                         ->elements($post->attachment));
 
         expect($rendered)->toContain(sprintf('src="%s"', $attachment->url()));
+    });
+
+    it('shows empty value when collection exists but with default models', function () {
+        $post = PostWithDefault::create();
+
+        $rendered = $this->renderComponent(Lightbox::make('post.thumb')
+                        ->empty('No elements'), compact('post'));
+
+        expect($rendered)->toContain('No elements');
     });
 })->group('lightbox.elements');
 

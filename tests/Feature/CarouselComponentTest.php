@@ -5,6 +5,7 @@ use Czernika\OrchidImages\Screen\Components\Carousel;
 use Orchid\Platform\Dashboard;
 use Tests\Models\Attachment;
 use Tests\Models\Post;
+use Tests\Models\PostWithDefault;
 
 uses()->group('carousel');
 
@@ -79,6 +80,15 @@ describe('elements', function () {
             ->toContain('alt="Some alt"')
             ->toContain('title="Some title"')
             ->toContain('src="https://some.url"');
+    });
+
+    it('shows empty value when collection exists but with default models', function () {
+        $post = PostWithDefault::create();
+
+        $rendered = $this->renderComponent(Carousel::make('post.thumb')
+                        ->empty('No elements'), compact('post'));
+
+        expect($rendered)->toContain('No elements');
     });
 })->group('carousel.elements');
 

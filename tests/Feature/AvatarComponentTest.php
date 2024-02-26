@@ -7,6 +7,7 @@ use Orchid\Support\Color;
 use Tests\Models\Attachment as TestAttachment;
 use Tests\Models\AttachmentWithPlaceholder;
 use Tests\Models\Post;
+use Tests\Models\PostWithDefault;
 
 uses()->group('avatar');
 
@@ -84,6 +85,17 @@ describe('placeholder', function () {
         ]);
 
         $rendered = $this->renderComponent(Avatar::make('post.thumb_id')
+            ->placeholder('/img/placeholder.webp'), compact('post'));
+
+        expect($rendered)->toContain('src="/img/placeholder.webp"');
+    });
+
+    it('can show placeholder for relations with default models', function () {
+        $post = PostWithDefault::create([
+            'thumb_id' => null,
+        ]);
+
+        $rendered = $this->renderComponent(Avatar::make('post.thumb')
             ->placeholder('/img/placeholder.webp'), compact('post'));
 
         expect($rendered)->toContain('src="/img/placeholder.webp"');

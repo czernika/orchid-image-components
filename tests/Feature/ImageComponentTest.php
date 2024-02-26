@@ -7,6 +7,7 @@ use Orchid\Platform\Dashboard;
 use Tests\Models\Attachment as TestAttachment;
 use Tests\Models\AttachmentWithPlaceholder;
 use Tests\Models\Post;
+use Tests\Models\PostWithDefault;
 
 uses()->group('image');
 
@@ -84,6 +85,17 @@ describe('placeholder', function () {
         ]);
 
         $rendered = $this->renderComponent(Image::make('post.thumb_id')
+            ->placeholder('/img/placeholder.webp'), compact('post'));
+
+        expect($rendered)->toContain('src="/img/placeholder.webp"');
+    });
+
+    it('can show placeholder for relations with default models', function () {
+        $post = PostWithDefault::create([
+            'thumb_id' => null,
+        ]);
+
+        $rendered = $this->renderComponent(Image::make('post.thumb')
             ->placeholder('/img/placeholder.webp'), compact('post'));
 
         expect($rendered)->toContain('src="/img/placeholder.webp"');

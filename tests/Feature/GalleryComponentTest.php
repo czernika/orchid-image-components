@@ -5,6 +5,7 @@ use Czernika\OrchidImages\Screen\Components\Gallery;
 use Orchid\Platform\Dashboard;
 use Tests\Models\Attachment;
 use Tests\Models\Post;
+use Tests\Models\PostWithDefault;
 
 uses()->group('gallery');
 
@@ -87,6 +88,15 @@ describe('empty', function () {
         $post = Post::create();
 
         $rendered = $this->renderComponent(Gallery::make('post.attachment')
+                        ->empty('No elements'), compact('post'));
+
+        expect($rendered)->toContain('No elements');
+    });
+
+    it('shows empty value when collection exists but with default models', function () {
+        $post = PostWithDefault::create();
+
+        $rendered = $this->renderComponent(Gallery::make('post.thumb')
                         ->empty('No elements'), compact('post'));
 
         expect($rendered)->toContain('No elements');

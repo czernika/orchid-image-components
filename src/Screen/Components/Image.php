@@ -45,12 +45,15 @@ class Image extends Field
 
             $valueIsAttachmentModel = Helper::isAttachment($value);
 
+            // TODO refactor nesting
             if (is_null($this->get('src'))) {
                 $placeholder = $this->get('placeholder');
-
-                $this->set('src', $valueIsAttachmentModel ?
-                    $value->url($placeholder) :
-                    (is_null($value) ? $placeholder : $value));
+                
+                if ($valueIsAttachmentModel) {
+                    $this->set('src', $value->exists ? $value->url($placeholder) : $placeholder);
+                } else {
+                    $this->set('src', is_null($value) ? $placeholder : $value);
+                }
             }
 
             if ('' === $this->get('alt')) {

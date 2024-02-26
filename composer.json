@@ -1,6 +1,6 @@
 {
     "name": "czernika/orchid-image-components",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "license": "MIT",
     "authors": [
         {
@@ -16,7 +16,7 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.39",
         "pestphp/pest": "^2.24",
-        "orchestra/testbench": "^8.14",
+        "orchestra/testbench": "^8.14|^9.0",
         "plannr/laravel-fast-refresh-database": "^1.1"
     },
     "minimum-stability": "stable",
