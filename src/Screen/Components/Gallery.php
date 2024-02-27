@@ -26,6 +26,7 @@ class Gallery extends Field
         'elements' => [],
         'empty' => '',
         'templateColumns' => 'repeat(6, 1fr)',
+        'width' => '100%',
         'aspectRatio' => '4 / 3',
         'fit' => 'object-fit-cover', // 'cover', 'contain', 'fill', 'scale', 'none'
     ];
@@ -77,5 +78,16 @@ class Gallery extends Field
     public function aspectRatio(string $ratio): static
     {
         return $this->set('aspectRatio', $ratio);
+    }
+
+    /**
+     * Set gallery width
+     *
+     * @param string|integer $width
+     * @return static
+     */
+    public function width(string|int $width): static
+    {
+        return $this->set('width', is_numeric($width) ? "{$width}px" : $width);
     }
 }

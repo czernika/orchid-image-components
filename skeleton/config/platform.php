@@ -126,8 +126,13 @@ return [
      */
 
     'resource' => [
-        'stylesheets' => [],
-        'scripts'     => [],
+        'stylesheets' => [
+            '/vendor/orchid-images/css/image.css',
+            '/vendor/orchid-images/css/lightbox.css',
+        ],
+        'scripts'     => [
+            '/vendor/orchid-images/js/carousel.js',
+            '/vendor/orchid-images/js/lightbox.js',],
     ],
 
     /*

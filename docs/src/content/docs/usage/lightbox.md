@@ -72,6 +72,4 @@ Lightbox::make('post.gallery')
 
 ### Layout max width
 
-:::caution
-In development
-:::
+See [max width for Gallery](/orchid-image-components/usage/gallery#layout-max-width).

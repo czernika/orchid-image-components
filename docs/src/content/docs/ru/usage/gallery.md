@@ -96,6 +96,13 @@ Gallery::make()
     ->empty('<b>No gallery</b>'),
 ```
 
+Или даже другой компонент
+
+```php
+Gallery::make()
+    ->empty(Image::make()->src(asset('/img/placeholder.jpg')))
+```
+
 ### Элементы
 
 Можно передать значения различными способами.
@@ -153,6 +160,9 @@ Gallery::make()
 
 ### Максимальная ширина галереи
 
-:::caution
-In development
-:::
+Задайте ширину для всей галереи
+
+```php
+Gallery::make()
+    ->width(500)
+```

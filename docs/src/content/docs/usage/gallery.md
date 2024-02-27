@@ -96,6 +96,13 @@ Gallery::make()
     ->empty('<b>No gallery</b>'),
 ```
 
+Or even another component
+
+```php
+Gallery::make()
+    ->empty(Image::make()->src(asset('/img/placeholder.jpg')))
+```
+
 ### Elements
 
 You can pass an array of links manually in a various ways.
@@ -152,6 +159,9 @@ Gallery::make()
 
 ### Layout max width
 
-:::caution
-In development
-:::
+Set width for whole gallery
+
+```php
+Gallery::make()
+    ->width(500)
+```

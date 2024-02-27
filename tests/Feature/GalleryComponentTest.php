@@ -111,7 +111,7 @@ describe('layout', function () {
 
         $rendered = $this->renderComponent(Gallery::make('post.attachment'), compact('post'));
 
-        expect($rendered)->toContain('style="grid-template-columns: repeat(6, 1fr);"');
+        expect($rendered)->toContain('style="grid-template-columns: repeat(6, 1fr); max-width: 100%;"');
     });
 
     it('can change number of columns', function () {
@@ -122,7 +122,7 @@ describe('layout', function () {
         $rendered = $this->renderComponent(Gallery::make('post.attachment')
                             ->columns(3), compact('post'));
 
-        expect($rendered)->toContain('style="grid-template-columns: repeat(3, 1fr);"');
+        expect($rendered)->toContain('style="grid-template-columns: repeat(3, 1fr); max-width: 100%;"');
     });
 
     it('set auto-fit and ignores columns that way', function () {
@@ -134,7 +134,7 @@ describe('layout', function () {
                         ->columns(3)
                         ->autoFit(250), compact('post'));
 
-        expect($rendered)->toContain('style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));"');
+        expect($rendered)->toContain('style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); max-width: 100%;"');
     });
 
     it('changes auto-fit to auto-fill if there is less than 2 images', function () {
@@ -146,7 +146,18 @@ describe('layout', function () {
                         ->columns(3)
                         ->autoFit(250), compact('post'));
 
-        expect($rendered)->toContain('style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));"');
+        expect($rendered)->toContain('style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); max-width: 100%;"');
+    });
+
+    it('can change gallery max width', function () {
+        $attachment = Dashboard::model(Attachment::class)::factory()->create();
+        $post = Post::create();
+        $post->attachment()->syncWithoutDetaching($attachment);
+
+        $rendered = $this->renderComponent(Gallery::make('post.attachment')
+                                ->width('50vw'), compact('post'));
+
+        expect($rendered)->toContain('style="grid-template-columns: repeat(6, 1fr); max-width: 50vw;"');
     });
 })->group('gallery.layout');
 

@@ -186,6 +186,13 @@ In development
 
 ### Заголовок
 
-:::caution
-In development
-:::
+Используйте, когда нужно добавить описание изображению
+
+```php
+Image::make()
+    ->src('https://domain.com/some-image.jpg')
+    ->width(500)
+    ->caption('Some image'),
+```
+
+![Image with caption](../../../../assets/image-caption.webp)

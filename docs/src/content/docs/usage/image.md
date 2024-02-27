@@ -186,6 +186,13 @@ In development
 
 ### Caption
 
-:::caution
-In development
-:::
+Use it when you need picture description
+
+```php
+Image::make()
+    ->src('https://domain.com/some-image.jpg')
+    ->width(500)
+    ->caption('Some image'),
+```
+
+![Image with caption](../../../assets/image-caption.webp)

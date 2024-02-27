@@ -100,6 +100,17 @@ describe('placeholder', function () {
 
         expect($rendered)->toContain('src="/img/placeholder.webp"');
     });
+
+    test('empty method is an alias for placeholder', function () {
+        $post = Post::create([
+            'thumb_id' => null,
+        ]);
+
+        $rendered = $this->renderComponent(Avatar::make('post.thumb_id')
+            ->empty('/img/placeholder.webp'), compact('post'));
+
+        expect($rendered)->toContain('src="/img/placeholder.webp"');
+    });
 })->group('avatar.placeholder');
 
 describe('size', function () {

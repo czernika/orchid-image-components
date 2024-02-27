@@ -21,6 +21,7 @@ class Lightbox extends Gallery
         'elements' => [],
         'empty' => '',
         'templateColumns' => 'repeat(6, 1fr)',
+        'width' => '100%',
         'aspectRatio' => '4 / 3',
         'fit' => 'object-fit-cover', // 'cover', 'contain', 'fill', 'scale', 'none'
 

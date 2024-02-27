@@ -31,6 +31,7 @@ class Image extends Field
         'width' => '100%',
         'src' => null,
         'alt' => '',
+        'caption' => '',
         'placeholder' => null,
     ];
 
@@ -50,6 +51,7 @@ class Image extends Field
                 $placeholder = $this->get('placeholder');
                 
                 if ($valueIsAttachmentModel) {
+                    /** @var Attachment $value */
                     $this->set('src', $value->exists ? $value->url($placeholder) : $placeholder);
                 } else {
                     $this->set('src', is_null($value) ? $placeholder : $value);
@@ -87,6 +89,28 @@ class Image extends Field
     public function placeholder(string $placeholder): static
     {
         return $this->set('placeholder', $placeholder);
+    }
+
+    /**
+     * Placeholder method alias
+     *
+     * @param string $placeholder
+     * @return static
+     */
+    public function empty(string $placeholder): static
+    {
+        return $this->placeholder($placeholder);
+    }
+
+    /**
+     * Set image caption
+     *
+     * @param string $caption
+     * @return static
+     */
+    public function caption(string $caption): static
+    {
+        return $this->set('caption', $caption);
     }
 
     /**

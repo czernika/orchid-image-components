@@ -100,14 +100,42 @@ describe('placeholder', function () {
 
         expect($rendered)->toContain('src="/img/placeholder.webp"');
     });
+
+    test('empty method is an alias for placeholder', function () {
+        $post = Post::create([
+            'thumb_id' => null,
+        ]);
+
+        $rendered = $this->renderComponent(Image::make('post.thumb_id')
+            ->empty('/img/placeholder.webp'), compact('post'));
+
+        expect($rendered)->toContain('src="/img/placeholder.webp"');
+    });
 })->group('image.placeholder');
+
+describe('caption', function () {
+    it('does not renders figcaption by default', function () {
+        $rendered = $this->renderComponent(Image::make('image'));
+
+        expect($rendered)->not->toContain('<figcaption');
+    });
+
+    it('renders figcaption when provided', function () {
+        $rendered = $this->renderComponent(Image::make('image')
+            ->caption('Caption'));
+
+        expect($rendered)
+            ->toContain('Caption')
+            ->toContain('<figcaption');
+    });
+})->group('image.caption');
 
 describe('size', function () {
     it('renders correct height value', function ($height) {
         $rendered = $this->renderComponent(Image::make('image')
                         ->height($height));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: 600px; --oi-image-width: 100%;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: 600px; width: 100%;\"");
     })->with([
         'numeric value' => 600,
         'string value with no CSS units' => '600',
@@ -117,14 +145,14 @@ describe('size', function () {
     it('expects default value for height to be auto', function () {
         $rendered = $this->renderComponent(Image::make('image'));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: auto; --oi-image-width: 100%;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: auto; width: 100%;\"");
     });
 
     it('renders correct width value', function ($width) {
         $rendered = $this->renderComponent(Image::make('image')
                         ->width($width));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: auto; --oi-image-width: 600px;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: auto; width: 600px;\"");
     })->with([
         'numeric value' => 600,
         'string value with no CSS units' => '600',
@@ -134,14 +162,14 @@ describe('size', function () {
     it('expects default value for width to be 100%', function () {
         $rendered = $this->renderComponent(Image::make('image'));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: auto; --oi-image-width: 100%;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: auto; width: 100%;\"");
     });
 
     it('renders correct both width and height value when passed as size', function ($size) {
         $rendered = $this->renderComponent(Image::make('image')
                         ->size($size));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: 600px; --oi-image-width: 600px;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: 600px; width: 600px;\"");
     })->with([
         'numeric value' => 600,
         'string value with no CSS units' => '600',

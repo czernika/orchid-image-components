@@ -2,7 +2,7 @@
 <div data-controller="lightbox">
     <ul
         class="list-unstyled oi-gallery oi-lightbox"
-        style="grid-template-columns: {{ $templateColumns }};"
+        style="grid-template-columns: {{ $templateColumns }}; max-width: {{ $width }};"
     >
         @forelse ($elements as $item)
             @include('orchid-images::partials.gallery.lightbox-image')
