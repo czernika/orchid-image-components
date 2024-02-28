@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.5 - 2024-02-28
+
+**Full Changelog**: https://github.com/czernika/orchid-image-components/compare/v2.0.4...v2.0.5
+
 ## v2.0.4
 
 - **FEAT**: added `width()` for Gallery and Carousel
