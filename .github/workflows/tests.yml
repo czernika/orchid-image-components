@@ -16,17 +16,15 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.1, 8.2, 8.3]
-        laravel: [10.*]
-        testbench: [8.*]
-        # laravel: [10.*, 11.*]
-        # include:
-        #   - laravel: 11.*
-        #   - testbench: ^9.0
-        #   - laravel: 10.*
-        #   - testbench: ^8.0
-        # exclude:
-        #   - laravel: 11.*
-        #     php: 8.1
+        laravel: [10.*, 11.*]
+        include:
+          - laravel: 11.*
+          - testbench: ^9.0
+          - laravel: 10.*
+          - testbench: ^8.0
+        exclude:
+          - laravel: 11.*
+            php: 8.1
 
     env:
       DB_DATABASE: testing
@@ -49,7 +47,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # see https://github.com/shivammathur/setup-php
       - name: Prepare PHP test environment
         uses: shivammathur/setup-php@v2
         with:

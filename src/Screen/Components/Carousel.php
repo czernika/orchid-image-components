@@ -6,6 +6,7 @@ namespace Czernika\OrchidImages\Screen\Components;
 
 use Czernika\OrchidImages\Screen\Components\Traits\CanBeEmpty;
 use Czernika\OrchidImages\Screen\Components\Traits\HasElements;
+use Czernika\OrchidImages\Screen\Components\Traits\HasSizes;
 use Czernika\OrchidImages\Screen\Components\Traits\ObjectFitable;
 use Orchid\Screen\Field;
 
@@ -22,7 +23,7 @@ use Orchid\Screen\Field;
  */
 class Carousel extends Field
 {
-    use HasElements, ObjectFitable, CanBeEmpty;
+    use HasElements, ObjectFitable, CanBeEmpty, HasSizes;
 
     protected $view = 'orchid-images::components.carousel';
 
@@ -108,6 +109,6 @@ class Carousel extends Field
      */
     public function height(string|int $height): static
     {
-        return $this->set('height', is_numeric($height) ? "{$height}px" : $height);
+        return $this->setSize('height', $height);
     }
 }

@@ -6,6 +6,7 @@ namespace Czernika\OrchidImages\Screen\Components;
 
 use Czernika\OrchidImages\Screen\Components\Traits\CanBeEmpty;
 use Czernika\OrchidImages\Screen\Components\Traits\HasElements;
+use Czernika\OrchidImages\Screen\Components\Traits\HasSizes;
 use Czernika\OrchidImages\Screen\Components\Traits\ObjectFitable;
 use Orchid\Screen\Field;
 
@@ -18,7 +19,7 @@ use Orchid\Screen\Field;
  */
 class Gallery extends Field
 {
-    use HasElements, ObjectFitable, CanBeEmpty;
+    use HasElements, ObjectFitable, CanBeEmpty, HasSizes;
 
     protected $view = 'orchid-images::components.gallery';
 
@@ -88,6 +89,6 @@ class Gallery extends Field
      */
     public function width(string|int $width): static
     {
-        return $this->set('width', is_numeric($width) ? "{$width}px" : $width);
+        return $this->setSize('width', $width);
     }
 }

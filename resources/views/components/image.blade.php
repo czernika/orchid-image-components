@@ -2,10 +2,10 @@
     <div style="--oi-image-height: {{ $height }}; width: {{ $width }};">
         <figure class="d-block oi-image">
             @include('orchid-images::partials.image')
-        </figure>
     
-        @if ($caption)
-            <figcaption class="text-muted fst-italic text-center">{{ $caption }}</figcaption>
-        @endif
+            @if ($caption)
+                <figcaption class="text-muted fst-italic text-center">{{ $caption }}</figcaption>
+            @endif
+        </figure>
     </div>
 @endcomponent

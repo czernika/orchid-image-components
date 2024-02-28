@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Czernika\OrchidImages\Screen\Components;
 
+use Czernika\OrchidImages\Screen\Components\Traits\HasSizes;
 use Czernika\OrchidImages\Screen\Components\Traits\ObjectFitable;
 use Czernika\OrchidImages\Support\Helper;
 use Orchid\Attachment\Models\Attachment;
@@ -21,7 +22,7 @@ use Orchid\Screen\Field;
  */
 class Image extends Field
 {
-    use ObjectFitable;
+    use ObjectFitable, HasSizes;
 
     protected $view = 'orchid-images::components.image';
 
@@ -121,7 +122,7 @@ class Image extends Field
      */
     public function height(string|int $height): static
     {
-        return $this->set('height', is_numeric($height) ? "{$height}px" : $height);
+        return $this->setSize('height', $height);
     }
 
     /**
@@ -132,7 +133,7 @@ class Image extends Field
      */
     public function width(string|int $width): static
     {
-        return $this->set('width', is_numeric($width) ? "{$width}px" : $width);
+        return $this->setSize('width', $width);
     }
 
     /**

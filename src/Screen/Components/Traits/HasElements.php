@@ -28,20 +28,23 @@ trait HasElements
      */
     public function elements($elements): static
     {
-        // it can be attachment ID
+        // it can be an Attachment ID
         if (is_numeric($elements)) {
-            $attachment = Dashboard::model(Attachment::class)::find($elements);
-
-            return $this->set('elements', [$attachment]);
+            $elements = Dashboard::model(Attachment::class)::find($elements);
         }
 
         // it can be singular attachment instance
+        // in this case check if it exists 
         if ($elements instanceof Attachment) {
-            return $this->set('elements', $elements?->exists ? [$elements] : []);
+            return $this->set('elements', $elements->exists ? [$elements] : []);
+        }
+
+        if (is_null($elements)) {
+            return $this->set('elements', []);
         }
 
         if (is_array($elements) && !empty($elements)) {
-            // it can be just an array of attachments
+            // it can be just an array of attachments - check the first element
             if (Helper::isAttachment($elements[0])) {
                 return $this->set('elements', $elements);
             }
@@ -49,10 +52,6 @@ trait HasElements
             // it can be an array of string values
             // in this way we should convert it in order to be compatible with blade template
             $elements = collect($elements)->mapInto(URLToAttachmentMapper::class);
-        }
-
-        if (is_null($elements)) {
-            return $this->set('elements', []);
         }
 
         return $this->set('elements', $elements);
