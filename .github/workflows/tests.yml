@@ -18,6 +18,7 @@ jobs:
       matrix:
         php: [8.1, 8.2, 8.3]
         laravel: [10.*, 11.*]
+        orchid: [14.*]
         include:
           - laravel: 11.*
           - testbench: ^9.0
@@ -26,13 +27,14 @@ jobs:
         exclude:
           - laravel: 11.*
             php: 8.1
+            orchid: 14.*
 
     env:
       DB_DATABASE: testing
       DB_USERNAME: root
       DB_PASSWORD: password
 
-    name: PHP ${{ matrix.php }} | Laravel - ${{ matrix.laravel }}
+    name: PHP ${{ matrix.php }} | Laravel - ${{ matrix.laravel }} | Orchid - ${{ matrix.orchid }}
 
     services:
       mysql:
@@ -62,13 +64,13 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-orchid-${{ matrix.orchid }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "orchid/platform:${{ matrix.orchid }}" --no-interaction --no-update
           composer update --prefer-dist --no-interaction
 
       - name: Running tests
