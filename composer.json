@@ -19,7 +19,7 @@
         "orchestra/testbench": "^8.14|^9.0",
         "plannr/laravel-fast-refresh-database": "^1.1"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
         "test": "./vendor/bin/pest --bail",
