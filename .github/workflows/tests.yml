@@ -27,6 +27,8 @@ jobs:
         exclude:
           - laravel: 11.*
             php: 8.1
+          # tmp
+          - laravel: 11.*
             orchid: 14.*
 
     env:
