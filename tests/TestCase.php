@@ -51,7 +51,10 @@ abstract class TestCase extends BaseTestCase
     protected function defineDatabaseMigrations()
     {
         $this->loadLaravelMigrations();
-        $this->loadMigrationsFrom(dirname(__DIR__, 1) . '/database/migrations');
+        $this->loadMigrationsFrom([
+            '--path' => dirname(__DIR__, 1) . '/database/migrations',
+            '--database' => 'sqlite',
+        ]);
         $this->artisan('orchid:install');
     }
 
