@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "orchid/platform": "^14.15"
+        "orchid/platform": "^14.21"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.39",

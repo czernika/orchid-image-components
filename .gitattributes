@@ -2,3 +2,6 @@
 /docs     export-ignore
 /skeleton export-ignore
 /tests    export-ignore
+
+/dist/css/*.css linguist-generated
+/dist/js/*.js linguist-generated

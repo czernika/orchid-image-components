@@ -21,22 +21,18 @@ jobs:
         include:
           - laravel: 10.*
             testbench: 8.*
-            orchid: 14.*
-        # tmp
+          - laravel: 11.*
+            testbench: 9.*
         exclude:
           - laravel: 11.*
             php: 8.1
-          - laravel: 11.*
-            php: 8.2
-          - laravel: 11.*
-            php: 8.3
 
     env:
       DB_DATABASE: testing
       DB_USERNAME: root
       DB_PASSWORD: password
 
-    name: PHP ${{ matrix.php }} | Laravel - ${{ matrix.laravel }} | Orchid - ${{ matrix.orchid }}
+    name: PHP ${{ matrix.php }} | Laravel - ${{ matrix.laravel }}
 
     services:
       mysql:
