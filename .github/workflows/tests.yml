@@ -21,8 +21,8 @@ jobs:
         include:
           - laravel: 11.*
             testbench: 9.*
-        #   - laravel: 10.*
-        #     testbench: 8.*
+          - laravel: 10.*
+            testbench: 8.*
         exclude:
           - laravel: 11.*
             php: 8.1
@@ -52,8 +52,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update --dev --prefer-stable
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --prefer-dist --no-interaction
 
       - name: Running tests
-        run: ./vendor/bin/pest --bail
+        run: composer test

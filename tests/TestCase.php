@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Czernika\OrchidImages\OrchidImagesServiceProvider;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Orchid\Attachment\Models\Attachment as OrchidAttachment;
@@ -14,7 +15,6 @@ use Orchid\Platform\Providers\FoundationServiceProvider as OrchidServiceProvider
 use Orchid\Screen\Field;
 use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Repository as ScreenRepository;
-use Plannr\Laravel\FastRefreshDatabase\Traits\FastRefreshDatabase;
 use Tests\Models\Attachment;
 use Orchid\Support\Facades\Alert;
 use Tabuna\Breadcrumbs\Breadcrumbs;
@@ -22,7 +22,7 @@ use Watson\Active\Active;
 
 abstract class TestCase extends BaseTestCase
 {
-    use WithWorkbench, InteractsWithViews, FastRefreshDatabase;
+    use WithWorkbench, InteractsWithViews, RefreshDatabase;
 
     protected function setUp(): void
     {

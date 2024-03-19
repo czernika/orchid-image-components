@@ -16,13 +16,12 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.39",
         "pestphp/pest": "^2.24",
-        "orchestra/testbench": "^8.14|^9.0",
-        "plannr/laravel-fast-refresh-database": "^1.1"
+        "orchestra/testbench": "^8.14|^9.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "test": "./vendor/bin/pest --bail",
+        "test": "./vendor/bin/pest",
         "post-autoload-dump": [
             "@clear",
             "@prepare"
