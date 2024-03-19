@@ -36,8 +36,6 @@ abstract class TestCase extends BaseTestCase
 
         // Use our test mockup model instead
         Dashboard::useModel(OrchidAttachment::class, Attachment::class);
-
-        $this->artisan('orchid:install');
     }
 
     protected function defineEnvironment($app)
@@ -68,7 +66,11 @@ abstract class TestCase extends BaseTestCase
     protected function defineDatabaseMigrations()
     {
         $this->loadLaravelMigrations();
-        $this->loadMigrationsFrom(workbench_path('database/migrations'));
+        $this->loadMigrationsFrom([
+            dirname(__DIR__, 1).'/vendor/orchid/platform/database/migrations',
+            workbench_path('database/migrations'),
+        ]);
+        // $this->artisan('orchid:install');
     }
 
     public function renderComponent(Field $component, ?array $data = []): string
