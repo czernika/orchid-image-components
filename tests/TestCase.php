@@ -16,9 +16,9 @@ use Tests\Models\Attachment;
 use Orchid\Support\Facades\Alert;
 use Tabuna\Breadcrumbs\Breadcrumbs;
 use Watson\Active\Active;
-use Orchestra\Testbench\Attributes\WithMigration;
 
-#[WithMigration]
+use function Orchestra\Testbench\workbench_path;
+
 abstract class TestCase extends BaseTestCase
 {
     use WithWorkbench, InteractsWithViews, RefreshDatabase;
@@ -30,7 +30,7 @@ abstract class TestCase extends BaseTestCase
         Factory::guessFactoryNamesUsing(function ($factory) {
             $factoryBasename = class_basename($factory);
 
-            return "Database\Factories\\$factoryBasename".'Factory';
+            return "Workbench\\Database\Factories\\$factoryBasename".'Factory';
         });
 
         // Use our test mockup model instead
@@ -53,7 +53,7 @@ abstract class TestCase extends BaseTestCase
     protected function defineDatabaseMigrations()
     {
         $this->loadLaravelMigrations();
-        $this->loadMigrationsFrom(dirname(__DIR__, 1) . '/database/migrations');
+        $this->loadMigrationsFrom(workbench_path('database/migrations'));
         $this->artisan('orchid:install');
     }
 
