@@ -1,3 +1,7 @@
+providers:
+    - Orchid\Platform\Providers\FoundationServiceProvider
+    - Czernika\OrchidImages\OrchidImagesServiceProvider
+
 workbench:
   install: true
   discovers:
@@ -6,10 +10,15 @@ workbench:
     commands: false
     components: false
     views: false
+    config: true
+
   build:
     - asset-publish
     - create-sqlite-db
     - migrate:refresh
+    - orchid:install
+
   assets:
     - orchid-assets
+
   sync: []

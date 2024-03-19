@@ -11,7 +11,8 @@
     ],
     "require": {
         "php": "^8.1",
-        "orchid/platform": "^14.21"
+        "orchid/platform": "^14.0",
+        "laravel/framework": "^10.0|^11.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.39",
@@ -33,6 +34,9 @@
             "Composer\\Config::disableProcessTimeout",
             "@build",
             "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/phpstan analyse"
         ]
     },
     "autoload": {
@@ -43,9 +47,12 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "App\\": "skeleton/app/",
+            "App\\": "vendor/orchestra/testbench-core/laravel/app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "config": {

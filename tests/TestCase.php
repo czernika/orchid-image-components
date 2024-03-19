@@ -3,15 +3,12 @@
 namespace Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Czernika\OrchidImages\OrchidImagesServiceProvider;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Orchid\Attachment\Models\Attachment as OrchidAttachment;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Providers\FoundationServiceProvider as OrchidServiceProvider;
 use Orchid\Screen\Field;
 use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Repository as ScreenRepository;
@@ -38,26 +35,6 @@ abstract class TestCase extends BaseTestCase
         Dashboard::useModel(OrchidAttachment::class, Attachment::class);
     }
 
-    protected function getPackageProviders($app)
-    {
-        return [
-            OrchidServiceProvider::class,
-            OrchidImagesServiceProvider::class,
-        ];
-    }
-
-    protected function defineEnvironment($app)
-    {
-        tap($app['config'], function (Repository $config) {
-            $config->set('database.default', 'testing');
-            $config->set('database.connections.testing', [
-                'driver'   => 'sqlite',
-                'database' => ':memory:',
-                'prefix'   => '',
-            ]);
-        });
-    }
-
     /**
      * @param  \Illuminate\Foundation\Application  $app
      */
@@ -75,7 +52,6 @@ abstract class TestCase extends BaseTestCase
     {
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom(dirname(__DIR__, 1) . '/database/migrations');
-        $this->artisan('orchid:install');
     }
 
     public function renderComponent(Field $component, ?array $data = []): string
