@@ -16,9 +16,11 @@ use Tests\Models\Attachment;
 use Orchid\Support\Facades\Alert;
 use Tabuna\Breadcrumbs\Breadcrumbs;
 use Watson\Active\Active;
+use Orchestra\Testbench\Attributes\WithMigration;
 
 use function Orchestra\Testbench\workbench_path;
 
+#[WithMigration]
 abstract class TestCase extends BaseTestCase
 {
     use WithWorkbench, InteractsWithViews, RefreshDatabase;
