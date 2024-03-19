@@ -52,6 +52,7 @@ abstract class TestCase extends BaseTestCase
     {
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom(dirname(__DIR__, 1) . '/database/migrations');
+        $this->artisan('orchid:install');
     }
 
     public function renderComponent(Field $component, ?array $data = []): string
