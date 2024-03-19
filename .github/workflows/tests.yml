@@ -6,6 +6,8 @@ on:
       - master
     paths:
       - "**/*.php"
+      - "composer.*"
+      - "phpunit.xml"
       - ".github/workflows/tests.yml"
   pull_request:
 

@@ -16,11 +16,10 @@ use Tests\Models\Attachment;
 use Orchid\Support\Facades\Alert;
 use Tabuna\Breadcrumbs\Breadcrumbs;
 use Watson\Active\Active;
-use Orchestra\Testbench\Attributes\WithMigration;
+use Illuminate\Contracts\Config\Repository;
 
 use function Orchestra\Testbench\workbench_path;
 
-#[WithMigration]
 abstract class TestCase extends BaseTestCase
 {
     use WithWorkbench, InteractsWithViews, RefreshDatabase;
@@ -37,6 +36,18 @@ abstract class TestCase extends BaseTestCase
 
         // Use our test mockup model instead
         Dashboard::useModel(OrchidAttachment::class, Attachment::class);
+    }
+
+    protected function defineEnvironment($app)
+    {
+        tap($app['config'], function (Repository $config) {
+            $config->set('database.default', 'testbench');
+            $config->set('database.connections.testbench', [
+                'driver'   => 'sqlite',
+                'database' => ':memory:',
+                'prefix'   => '',
+            ]);
+        });
     }
 
     /**
@@ -57,12 +68,6 @@ abstract class TestCase extends BaseTestCase
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom(workbench_path('database/migrations'));
         $this->artisan('orchid:install');
-
-        $this->artisan('migrate');
-
-        $this->beforeApplicationDestroyed(
-            fn () => $this->artisan('migrate:rollback')
-        );
     }
 
     public function renderComponent(Field $component, ?array $data = []): string
