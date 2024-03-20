@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.6 - 2024-03-20
+
+- Laravel 11 support
+
 ## v2.0.5 - 2024-02-28
 
 **Full Changelog**: https://github.com/czernika/orchid-image-components/compare/v2.0.4...v2.0.5
