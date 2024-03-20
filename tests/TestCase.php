@@ -38,6 +38,12 @@ abstract class TestCase extends BaseTestCase
         Dashboard::useModel(OrchidAttachment::class, Attachment::class);
     }
 
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        $this->artisan('orchid:install');
+    }
+
     protected function defineEnvironment($app)
     {
         tap($app['config'], function (Repository $config) {
@@ -67,10 +73,8 @@ abstract class TestCase extends BaseTestCase
     {
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom([
-            dirname(__DIR__, 1).'/vendor/orchid/platform/database/migrations',
             workbench_path('database/migrations'),
         ]);
-        // $this->artisan('orchid:install');
     }
 
     public function renderComponent(Field $component, ?array $data = []): string
