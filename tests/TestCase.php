@@ -65,8 +65,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function defineDatabaseMigrations()
     {
-        // $this->loadLaravelMigrations();
-
         $this->loadMigrationsFrom([
             workbench_path('database/migrations'),
         ]);
