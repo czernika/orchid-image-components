@@ -6,10 +6,12 @@ Adds new image components to preview uploaded (or external) images for Laravel [
 
 ## Compatibility
 
-| Version | PHP          | Laravel | Orchid |
-|---------|--------------|---------|--------|
-| 2.x     | 8.1/8.2/8.3  | 10.x    | 14.x   |
-| 2.x     | 8.2/8.3      | 11.x    | 14.x   |
+*Version 1.x is no longer supported*
+
+| Version | PHP          | Laravel | Orchid   |
+|---------|--------------|---------|----------|
+| 2.x     | 8.1/8.2/8.3  | 10.x    | 14.x     |
+| 2.x     | 8.2/8.3      | 11.x    | ^14.21   |
 
 ## Docs
 
