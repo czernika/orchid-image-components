@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.1 - 2024-06-12
+
+- fix: resolve null url values for galleries by adding placeholder method
+
 ## v2.1.0 - 2024-06-12
 
 - refactor: default value for `aspect-ratio` property for Gallery and Lightbox components changed from `4/3` to `auto`
