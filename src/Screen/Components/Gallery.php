@@ -28,7 +28,7 @@ class Gallery extends Field
         'empty' => '',
         'templateColumns' => 'repeat(6, 1fr)',
         'width' => '100%',
-        'aspectRatio' => '4 / 3',
+        'aspectRatio' => 'auto',
         'fit' => 'object-fit-cover', // 'cover', 'contain', 'fill', 'scale', 'none'
     ];
 

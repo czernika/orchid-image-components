@@ -48,6 +48,10 @@ Lightbox::make('post.gallery'),
 
 Смотрите [columns для Gallery](/orchid-image-components/usage/gallery#columns).
 
+### Соотношение сторон
+
+Смотрите [aspect ratio для Gallery](/orchid-image-components/usage/gallery#aspect-ratio).
+
 ### Вписываемость
 
 Смотрите [fit property для Gallery](/orchid-image-components/usage/gallery#fit-property).

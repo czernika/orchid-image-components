@@ -48,6 +48,10 @@ Most of them are the same as for [Gallery](/orchid-image-components/usage/galler
 
 See [columns for Gallery](/orchid-image-components/usage/gallery#columns).
 
+### Aspect ratio
+
+See [aspect ratio for Gallery](/orchid-image-components/usage/gallery#aspect-ratio).
+
 ### Fit property
 
 See [fit property for Gallery](/orchid-image-components/usage/gallery#fit-property).

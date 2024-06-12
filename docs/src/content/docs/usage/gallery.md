@@ -76,6 +76,10 @@ This will be the equivalent for `grid-template-columns: repeat(auto-fit, minmax(
 
 It looks exactly the same if you set 4 columns, but if there is no room for 4th image to be displayed (remember it has to be at least 200px wide) it will jump to another row. If there are less than two images, `auto-fit` will be converted into `auto-fill` in order to prevent image to stretch.
 
+### Aspect ratio
+
+Aspect ratio for every image in the gallery. Default `auto`, meaning image will take as much height as required
+
 ### Fit property
 
 Applied for every image in the gallery. See [fit for Image](/orchid-image-components/usage/image#fit-property).

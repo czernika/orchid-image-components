@@ -123,14 +123,14 @@ describe('layout', function () {
 })->group('lightbox.layout');
 
 describe('aspect ratio', function () {
-    it('has 4 / 3 default ratio', function () {
+    it('has default ratio', function () {
         $attachment = Dashboard::model(Attachment::class)::factory()->create();
         $post = Post::create();
         $post->attachment()->syncWithoutDetaching($attachment);
 
         $rendered = $this->renderComponent(Lightbox::make('post.attachment'), compact('post'));
 
-        expect($rendered)->toContain('style="--oi-gallery-aspect-ratio: 4 / 3;"');
+        expect($rendered)->toContain('style="--oi-gallery-aspect-ratio: auto;"');
     });
 
     it('can change gallery image ratio', function () {
