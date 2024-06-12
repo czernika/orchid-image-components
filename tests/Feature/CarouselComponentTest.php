@@ -4,6 +4,8 @@ use Czernika\OrchidImages\Enums\ObjectFit;
 use Czernika\OrchidImages\Screen\Components\Carousel;
 use Orchid\Platform\Dashboard;
 use Tests\Models\Attachment;
+use Tests\Models\AttachmentWithPlaceholder;
+use Tests\Models\Attachment as TestAttachment;
 use Tests\Models\Post;
 use Tests\Models\PostWithDefault;
 
@@ -89,6 +91,28 @@ describe('elements', function () {
                         ->empty('No elements'), compact('post'));
 
         expect($rendered)->toContain('No elements');
+    });
+
+    it('renders placeholder when model has no url value', function () {
+        Dashboard::useModel(Attachment::class, AttachmentWithPlaceholder::class);
+
+        $rendered = $this->renderComponent(Carousel::make('carousel')
+                        ->placeholder('/no-image.jpg')
+                        ->elements(Dashboard::model(Attachment::class)::factory()->create()));
+
+        Dashboard::useModel(Attachment::class, TestAttachment::class);
+
+        expect($rendered)->toContain('src="/no-image.jpg"');
+    });
+
+    it('renders placeholder when data has no url value', function () {
+        $rendered = $this->renderComponent(Carousel::make('carousel')
+                        ->placeholder('/no-image.jpg')
+                        ->elements([
+                            ['url' => null]
+                        ]));
+
+        expect($rendered)->toContain('src="/no-image.jpg"');
     });
 })->group('carousel.elements');
 

@@ -6,6 +6,8 @@ use Orchid\Platform\Dashboard;
 use Tests\Models\Attachment;
 use Tests\Models\Post;
 use Tests\Models\PostWithDefault;
+use Tests\Models\AttachmentWithPlaceholder;
+use Tests\Models\Attachment as TestAttachment;
 
 uses()->group('lightbox');
 
@@ -50,6 +52,28 @@ describe('elements', function () {
                         ->empty('No elements'), compact('post'));
 
         expect($rendered)->toContain('No elements');
+    });
+
+    it('renders placeholder when model has no url value', function () {
+        Dashboard::useModel(Attachment::class, AttachmentWithPlaceholder::class);
+
+        $rendered = $this->renderComponent(Lightbox::make('carousel')
+                        ->placeholder('/no-image.jpg')
+                        ->elements(Dashboard::model(Attachment::class)::factory()->create()));
+
+        Dashboard::useModel(Attachment::class, TestAttachment::class);
+
+        expect($rendered)->toContain('src="/no-image.jpg"');
+    });
+
+    it('renders placeholder when data has no url value', function () {
+        $rendered = $this->renderComponent(Lightbox::make('carousel')
+                        ->placeholder('/no-image.jpg')
+                        ->elements([
+                            ['url' => null]
+                        ]));
+
+        expect($rendered)->toContain('src="/no-image.jpg"');
     });
 })->group('lightbox.elements');
 

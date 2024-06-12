@@ -17,14 +17,17 @@ class URLToAttachmentMapper
         $this->defineData();
     }
 
-    public function url(): string
+    public function url($placeholder = ''): string
     {
-        return $this->url;
+        return $this->url === '' ? $placeholder : $this->url;
     }
 
     protected function defineData(): void
     {
-        $this->url = isset($this->data['url']) ? $this->data['url'] : $this->data;
+        // In most cases it will be url
+        // unless it is an associative array with null value for url
+        $potentialUrl = isset($this->data['url']) ? $this->data['url'] : $this->data;
+        $this->url = is_array($potentialUrl) && is_null($potentialUrl['url']) ? '' : $potentialUrl;
 
         if (isset($this->data['alt'])) {
             $this->alt = $this->data['alt'];

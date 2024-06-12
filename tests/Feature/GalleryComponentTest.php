@@ -6,6 +6,8 @@ use Orchid\Platform\Dashboard;
 use Tests\Models\Attachment;
 use Tests\Models\Post;
 use Tests\Models\PostWithDefault;
+use Tests\Models\AttachmentWithPlaceholder;
+use Tests\Models\Attachment as TestAttachment;
 
 uses()->group('gallery');
 
@@ -80,6 +82,28 @@ describe('elements', function () {
             ->toContain('alt="Some alt"')
             ->toContain('title="Some title"')
             ->toContain('src="https://some.url"');
+    });
+
+    it('renders placeholder when model has no url value', function () {
+        Dashboard::useModel(Attachment::class, AttachmentWithPlaceholder::class);
+
+        $rendered = $this->renderComponent(Gallery::make('carousel')
+                        ->placeholder('/no-image.jpg')
+                        ->elements(Dashboard::model(Attachment::class)::factory()->create()));
+
+        Dashboard::useModel(Attachment::class, TestAttachment::class);
+
+        expect($rendered)->toContain('src="/no-image.jpg"');
+    });
+
+    it('renders placeholder when data has no url value', function () {
+        $rendered = $this->renderComponent(Gallery::make('carousel')
+                        ->placeholder('/no-image.jpg')
+                        ->elements([
+                            ['url' => null]
+                        ]));
+
+        expect($rendered)->toContain('src="/no-image.jpg"');
     });
 })->group('gallery.elements');
 
