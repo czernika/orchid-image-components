@@ -30,6 +30,7 @@ class Carousel extends Field
     protected $attributes = [
         'elements' => [],
         'empty' => '',
+        'placeholder' => '',
         'controls' => false,
         'indicators' => false,
         'lightbox' => false,

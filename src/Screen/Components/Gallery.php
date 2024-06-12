@@ -26,6 +26,7 @@ class Gallery extends Field
     protected $attributes = [
         'elements' => [],
         'empty' => '',
+        'placeholder' => '',
         'templateColumns' => 'repeat(6, 1fr)',
         'width' => '100%',
         'aspectRatio' => 'auto',
