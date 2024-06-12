@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.2 - 2024-06-12
+
+- fix: composer version mismatch
+
 ## v2.1.1 - 2024-06-12
 
 - fix: resolve null url values for galleries by adding placeholder method
