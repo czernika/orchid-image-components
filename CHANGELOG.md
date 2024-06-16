@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.4 - 2024-06-16
+
+- fix: add updated styles
+
 ## v2.1.3 - 2024-06-16
 
 - fix: set image width variable instead of width
