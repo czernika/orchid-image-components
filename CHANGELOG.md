@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.1.3 - 2024-06-16
+
+- fix: set image width variable instead of width
+- refactor: images and avatars are now responsive
+
 ## v2.1.2 - 2024-06-12
 
 - fix: composer version mismatch
