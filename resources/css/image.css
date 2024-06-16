@@ -1,7 +1,8 @@
 .oi-image {
-    max-width: 100%;
-    width: var(--oi-image-width, 100%);
-    height: var(--oi-image-height, auto);
+    height: 100%;
+    width: 100%;
+    max-width: var(--oi-image-width, 100%);
+    max-height: var(--oi-image-height, auto);
 
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
     border-radius: var(--bs-border-radius);
@@ -29,7 +30,7 @@
     gap: var(--oi-gallery-gap, 1rem);
 
     .oi-image {
-        aspect-ratio: var(--oi-gallery-aspect-ratio, 4 / 3);
+        aspect-ratio: var(--oi-gallery-aspect-ratio, auto);
     }
 
     &__empty {
@@ -38,8 +39,10 @@
 }
 
 .oi-avatar {
-    width: var(--oi-avatar-width, 3rem);
-    height: var(--oi-avatar-height, 3rem);
+    height: 100%;
+    width: 100%;
+    max-width: var(--oi-avatar-width, 3rem);
+    max-height: var(--oi-avatar-height, 3rem);
 
     position: relative;
     isolation: isolate;

@@ -135,7 +135,7 @@ describe('size', function () {
         $rendered = $this->renderComponent(Image::make('image')
                         ->height($height));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: 600px; width: 100%;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: 600px; --oi-image-width: 100%;\"");
     })->with([
         'numeric value' => 600,
         'string value with no CSS units' => '600',
@@ -145,14 +145,14 @@ describe('size', function () {
     it('expects default value for height to be auto', function () {
         $rendered = $this->renderComponent(Image::make('image'));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: auto; width: 100%;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: auto; --oi-image-width: 100%;\"");
     });
 
     it('renders correct width value', function ($width) {
         $rendered = $this->renderComponent(Image::make('image')
                         ->width($width));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: auto; width: 600px;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: auto; --oi-image-width: 600px;\"");
     })->with([
         'numeric value' => 600,
         'string value with no CSS units' => '600',
@@ -162,14 +162,14 @@ describe('size', function () {
     it('expects default value for width to be 100%', function () {
         $rendered = $this->renderComponent(Image::make('image'));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: auto; width: 100%;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: auto; --oi-image-width: 100%;\"");
     });
 
     it('renders correct both width and height value when passed as size', function ($size) {
         $rendered = $this->renderComponent(Image::make('image')
                         ->size($size));
 
-        expect($rendered)->toContain("style=\"--oi-image-height: 600px; width: 600px;\"");
+        expect($rendered)->toContain("style=\"--oi-image-height: 600px; --oi-image-width: 600px;\"");
     })->with([
         'numeric value' => 600,
         'string value with no CSS units' => '600',
