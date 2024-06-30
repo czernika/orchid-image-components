@@ -1,8 +1,7 @@
 .oi-image {
-    height: 100%;
     width: 100%;
     max-width: var(--oi-image-width, 100%);
-    max-height: var(--oi-image-height, auto);
+    height: var(--oi-image-height, auto);
 
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
     border-radius: var(--bs-border-radius);
@@ -39,10 +38,9 @@
 }
 
 .oi-avatar {
-    height: 100%;
     width: 100%;
     max-width: var(--oi-avatar-width, 3rem);
-    max-height: var(--oi-avatar-height, 3rem);
+    height: var(--oi-avatar-height, 3rem);
 
     position: relative;
     isolation: isolate;
