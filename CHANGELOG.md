@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.5 - 2024-06-30
+
+- fix: fit properties were not applied because of height
+
 ## v2.1.4 - 2024-06-16
 
 - fix: add updated styles
