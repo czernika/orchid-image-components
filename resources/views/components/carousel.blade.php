@@ -54,7 +54,7 @@
                         @else
                             @include('orchid-images::partials.carousel.carousel-image', ['index' => $loop->index])
                         @endif
-                        @endforeach
+                    @endforeach
                 </ul>
             @if ($lightbox)
                 </div>
