@@ -3,7 +3,6 @@ import { defineConfig } from 'vite'
 export default defineConfig({
     resolve: {
         alias: {
-            '@': 'resources/js',
             '@css': 'resources/css',
         },
     },
