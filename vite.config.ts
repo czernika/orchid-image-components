@@ -16,8 +16,7 @@ export default defineConfig({
             ],
             output: {
                 assetFileNames: (assetInfo) => {
-                    // @ts-ignore It is ok type is defined in Rollup
-                    let extType = assetInfo.name.split('.').at(1);
+                    let extType = assetInfo.name ? assetInfo.name.split('.').at(1) : 'asset';
 
                     return `${extType}/[name][extname]`;
                 },
