@@ -8,10 +8,10 @@ Adds new image components to preview uploaded (or external) images for Laravel [
 
 *Version 1.x is no longer supported*
 
-| Version | PHP              | Laravel | Orchid   |
-|---------|------------------|---------|----------|
-| 2.x     | 8.1/8.2/8.3/8.4  | 10.x    | 14.x     |
-| 2.x     | 8.2/8.3/8.4      | 11.x    | ^14.21   |
+| Version | PHP             | Laravel   | Orchid |
+| ------- | --------------- | --------- | ------ |
+| 2.x     | 8.1/8.2/8.3/8.4 | 10.x      | 14.x   |
+| 2.x     | 8.2/8.3/8.4     | 11.x/12.x | ^14.21 |
 
 ## Docs
 

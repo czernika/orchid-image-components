@@ -12,7 +12,7 @@
     "require": {
         "php": "^8.1",
         "orchid/platform": "^14.0",
-        "laravel/framework": "^10.0|^11.0"
+        "laravel/framework": "^10.0|^11.0|^12.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.39",
