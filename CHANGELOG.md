@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.2.0 - 2025-03-01
+
+- Added Laravel 12 support
+
 ## v2.1.5 - 2024-06-30
 
 - fix: fit properties were not applied because of height
