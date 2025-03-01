@@ -1,6 +1,6 @@
 {
     "name": "czernika/orchid-image-components",
-    "version": "2.1.5",
+    "version": "2.2.0",
     "license": "MIT",
     "authors": [
         {
@@ -16,8 +16,8 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.39",
-        "pestphp/pest": "^2.24",
-        "orchestra/testbench": "^8.14|^9.0"
+        "pestphp/pest": "^3.0",
+        "orchestra/testbench": "^8.14|^9.0|^10.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
