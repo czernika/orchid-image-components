@@ -1,6 +1,6 @@
 {
     "name": "czernika/orchid-image-components",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "license": "MIT",
     "authors": [
         {
@@ -12,12 +12,12 @@
     "require": {
         "php": "^8.1",
         "orchid/platform": "^14.0",
-        "laravel/framework": "^10.0|^11.0|^12.0"
+        "laravel/framework": "^10.0|^11.0|^12.0|^13.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.39",
-        "pestphp/pest": "^3.0",
-        "orchestra/testbench": "^8.14|^9.0|^10.0"
+        "pestphp/pest": "^3.0|^4.0",
+        "orchestra/testbench": "^8.14|^9.0|^10.0|^11.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
